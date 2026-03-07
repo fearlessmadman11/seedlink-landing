@@ -9,15 +9,14 @@ export function FinalCTA() {
         </h2>
 
         <p className="mt-6 max-w-lg text-foreground/70">
-          Join the developer preview and start building compliant cannabis
-          software today.
+          Start with a free sandbox account. Go live when you're ready.
         </p>
 
         <Link
-          href="#"
+          href="https://app.seedlink.dev/register"
           className="mt-10 inline-flex border border-accent px-6 py-3 font-mono text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
         >
-          Join the SeedLink Preview
+          Get Started Free
         </Link>
       </div>
     </section>

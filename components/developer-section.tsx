@@ -1,14 +1,22 @@
 export function DeveloperSection() {
-  const codeExample = `POST /inventory/transfer
-
+  const codeExample = `// 1. Create a connection via Connect UI
+POST /v1/link/token/create
 {
-  "from_license": "LIC-123",
-  "to_license": "LIC-456",
-  "items": [
+  "organization_id": "org_abc123"
+}
+
+// 2. Pull packages from any state system
+GET /v1/packages?connection_id=conn_456
+→ 200 OK
+{
+  "data": [
     {
-      "package_id": "PKG-789",
+      "id": "pkg_789",
+      "tag": "ABCDEF012345670000010042",
+      "product_name": "Blue Dream 3.5g",
       "quantity": 100,
-      "unit": "grams"
+      "unit": "grams",
+      "status": "active"
     }
   ]
 }`
@@ -21,13 +29,13 @@ export function DeveloperSection() {
         </h2>
 
         <p className="mt-4 max-w-lg text-foreground/70">
-          A clean, predictable API that works the way you expect.
+          A clean, predictable API that works the way you expect. One integration covers every state system.
         </p>
 
         <div className="mt-12 max-w-2xl border border-border bg-card">
           <div className="flex items-center gap-2 border-b border-border px-4 py-3">
             <span className="font-mono text-xs text-foreground/50">
-              api-request.json
+              seedlink-api
             </span>
           </div>
 

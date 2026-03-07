@@ -56,9 +56,12 @@ export function IntegrationsSection() {
 
         <p className="mt-12 font-mono text-sm text-foreground/50">
           More integrations coming soon.{" "}
-          <span className="text-accent cursor-pointer hover:underline">
+          <a
+            href="mailto:sales@seedlink.dev?subject=Integration%20Request"
+            className="text-accent hover:underline"
+          >
             Request a system →
-          </span>
+          </a>
         </p>
       </div>
     </section>

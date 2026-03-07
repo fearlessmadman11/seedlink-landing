@@ -12,7 +12,7 @@ const plans = [
     requests: "10,000 requests/month",
     accounts: "1 connected account",
     cta: "Start building",
-    ctaHref: "#cta",
+    ctaHref: "https://app.seedlink.dev/register",
     highlighted: false,
     features: {
       connectUi: true,
@@ -32,7 +32,7 @@ const plans = [
     requests: "250,000 requests/month",
     accounts: "25 connected accounts",
     cta: "Go live",
-    ctaHref: "#cta",
+    ctaHref: "https://app.seedlink.dev/register",
     highlighted: true,
     features: {
       connectUi: true,
@@ -52,7 +52,7 @@ const plans = [
     requests: "2,000,000 requests/month",
     accounts: "250 connected accounts",
     cta: "Go live",
-    ctaHref: "#cta",
+    ctaHref: "https://app.seedlink.dev/register",
     highlighted: false,
     features: {
       connectUi: true,

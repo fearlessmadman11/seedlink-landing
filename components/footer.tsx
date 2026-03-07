@@ -16,13 +16,13 @@ export function Footer() {
             Pricing
           </Link>
           <Link
-            href="#"
+            href="https://api.seedlink.dev/docs"
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
           >
             Docs
           </Link>
           <Link
-            href="#"
+            href="mailto:sales@seedlink.dev"
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
           >
             Contact

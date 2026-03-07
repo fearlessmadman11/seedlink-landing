@@ -36,7 +36,7 @@ export function Header() {
             Pricing
           </Link>
           <Link
-            href="#"
+            href="https://api.seedlink.dev/docs"
             className="font-mono text-sm text-foreground/70 transition-colors hover:text-foreground"
           >
             Docs
@@ -44,10 +44,10 @@ export function Header() {
         </nav>
 
         <Link
-          href="#cta"
+          href="https://app.seedlink.dev/register"
           className="hidden border border-accent px-5 py-2 font-mono text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground md:inline-flex"
         >
-          Request Access
+          Get Started
         </Link>
       </div>
     </header>

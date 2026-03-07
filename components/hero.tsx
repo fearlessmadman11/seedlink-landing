@@ -14,10 +14,10 @@ export function Hero() {
 
         <div className="mt-12">
           <Link
-            href="#cta"
+            href="https://app.seedlink.dev/register"
             className="inline-flex border border-accent px-6 py-3 font-mono text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
           >
-            Be the First to Try
+            Get Started Free
           </Link>
         </div>
       </div>

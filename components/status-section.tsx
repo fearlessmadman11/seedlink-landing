@@ -1,6 +1,7 @@
 const statusItems = [
-  "Currently in private developer preview",
-  "Starting with Metrc-based states",
+  "Live — sign up and start building today",
+  "Sandbox environment available on the free plan",
+  "Metrc and BioTrack integrations supported",
   "Built with compliance, security, and auditability in mind",
 ]
 
