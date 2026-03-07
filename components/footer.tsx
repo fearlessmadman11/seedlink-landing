@@ -8,7 +8,25 @@ export function Footer() {
           SeedLink
         </Link>
 
-        <nav className="flex items-center gap-8">
+        <nav className="flex flex-wrap items-center gap-8">
+          <Link
+            href="/how-it-works"
+            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
+          >
+            How it works
+          </Link>
+          <Link
+            href="/features"
+            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
+          >
+            Features
+          </Link>
+          <Link
+            href="/enterprise"
+            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
+          >
+            Enterprise
+          </Link>
           <Link
             href="/pricing"
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
@@ -16,7 +34,7 @@ export function Footer() {
             Pricing
           </Link>
           <Link
-            href="https://api.seedlink.dev/docs"
+            href="https://docs.seedlink.dev"
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
           >
             Docs
