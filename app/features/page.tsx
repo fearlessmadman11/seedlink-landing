@@ -289,16 +289,7 @@ const connect = SeedLink.connect({
             <h2 className="max-w-2xl font-serif text-3xl italic text-foreground md:text-4xl lg:text-5xl text-balance">
               Start building today
             </h2>
-            <p className="mt-6 max-w-lg text-foreground/70">
-              Free sandbox access. No credit card required.
-            </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Link
-                href="https://app.seedlink.dev/register"
-                className="inline-flex border border-accent px-6 py-3 font-mono text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
-              >
-                Get Started Free
-              </Link>
+            <div className="mt-10">
               <Link
                 href="https://docs.seedlink.dev"
                 className="inline-flex font-mono text-sm text-foreground/50 transition-colors hover:text-foreground"

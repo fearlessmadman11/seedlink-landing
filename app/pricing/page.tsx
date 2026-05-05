@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
@@ -11,8 +10,6 @@ const plans = [
     environment: "Sandbox environment only",
     requests: "10,000 requests/month",
     accounts: "1 connected account",
-    cta: "Start building",
-    ctaHref: "https://app.seedlink.dev/register",
     highlighted: false,
     features: {
       connectUi: true,
@@ -31,8 +28,6 @@ const plans = [
     environment: "Sandbox + Production",
     requests: "250,000 requests/month",
     accounts: "25 connected accounts",
-    cta: "Go live",
-    ctaHref: "https://app.seedlink.dev/register",
     highlighted: true,
     features: {
       connectUi: true,
@@ -51,8 +46,6 @@ const plans = [
     environment: "Sandbox + Production",
     requests: "2,000,000 requests/month",
     accounts: "250 connected accounts",
-    cta: "Go live",
-    ctaHref: "https://app.seedlink.dev/register",
     highlighted: false,
     features: {
       connectUi: true,
@@ -71,8 +64,6 @@ const plans = [
     environment: "Sandbox + Production",
     requests: "Unlimited requests",
     accounts: "Unlimited connected accounts",
-    cta: "Talk to sales",
-    ctaHref: "mailto:sales@seedlink.dev",
     highlighted: false,
     features: {
       connectUi: true,
@@ -221,17 +212,6 @@ export default function PricingPage() {
                   ))}
                 </div>
 
-                {/* CTA */}
-                <Link
-                  href={plan.ctaHref}
-                  className={`mt-auto inline-flex items-center justify-center border px-5 py-2.5 font-mono text-sm transition-colors ${
-                    plan.highlighted
-                      ? "border-accent bg-accent text-accent-foreground hover:bg-transparent hover:text-accent"
-                      : "border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
               </div>
             ))}
           </div>

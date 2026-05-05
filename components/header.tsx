@@ -33,13 +33,6 @@ export function Header() {
           ))}
         </nav>
 
-        <Link
-          href="https://app.seedlink.dev/register"
-          className="hidden border border-accent px-5 py-2 font-mono text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground md:inline-flex"
-        >
-          Get Started
-        </Link>
-
         {/* Mobile hamburger */}
         <button
           type="button"
@@ -78,13 +71,6 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="https://app.seedlink.dev/register"
-            onClick={() => setMobileOpen(false)}
-            className="inline-flex w-fit border border-accent px-5 py-2 font-mono text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
-          >
-            Get Started
-          </Link>
         </nav>
       )}
     </header>
