@@ -16,12 +16,6 @@ export function Footer() {
             How it works
           </Link>
           <Link
-            href="/features"
-            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
-          >
-            Features
-          </Link>
-          <Link
             href="/enterprise"
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
           >

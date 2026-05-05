@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
@@ -270,32 +269,6 @@ export default function EnterprisePage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="border-t border-border px-6 py-32 md:px-12 md:py-40">
-          <div className="mx-auto max-w-7xl">
-            <h2 className="max-w-2xl font-serif text-3xl italic text-foreground md:text-4xl lg:text-5xl text-balance">
-              Ready to scale your compliance infrastructure?
-            </h2>
-            <p className="mt-6 max-w-lg text-foreground/70">
-              Talk to our team about Enterprise plans, custom SLAs, and
-              dedicated support.
-            </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Link
-                href="mailto:sales@seedlink.dev"
-                className="inline-flex border border-accent px-6 py-3 font-mono text-sm text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
-              >
-                Talk to sales
-              </Link>
-              <Link
-                href="/pricing"
-                className="inline-flex font-mono text-sm text-foreground/50 transition-colors hover:text-foreground"
-              >
-                View pricing →
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

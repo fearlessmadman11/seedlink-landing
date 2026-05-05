@@ -5,7 +5,6 @@ import Link from "next/link"
 
 const navLinks = [
   { href: "/how-it-works", label: "How it works" },
-  { href: "/features", label: "Features" },
   { href: "/enterprise", label: "For Enterprises" },
   { href: "/pricing", label: "Pricing" },
   { href: "https://docs.seedlink.dev", label: "Docs" },

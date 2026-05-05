@@ -1,8 +1,8 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
-import { WhySeedLink } from "@/components/why-seedlink"
-import { WhoItsFor } from "@/components/who-its-for"
-import { FinalCTA } from "@/components/final-cta"
+import { BuildOnce } from "@/components/build-once"
+import { ForDevelopers } from "@/components/for-developers"
+import { HowItWorksSection } from "@/components/how-it-works-section"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -11,9 +11,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <WhySeedLink />
-        <WhoItsFor />
-        <FinalCTA />
+        <BuildOnce />
+        <ForDevelopers />
+        <HowItWorksSection />
       </main>
       <Footer />
     </div>
