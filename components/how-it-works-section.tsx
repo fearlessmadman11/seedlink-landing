@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { ConnectDemo } from "@/components/connect-demo"
+import { CaptureDemo } from "@/components/capture-demo"
 
 type StepRowProps = {
   number: string
@@ -108,13 +109,7 @@ export function HowItWorksSection() {
             number="03"
             title="Capture."
             description="A drop-in scanner SDK for cultivators and processors. Read RFID tags, validate against your connected provider in real time, and write back to compliance — without leaving your app."
-            demo={
-              <PlaceholderDemo
-                label="Coming next"
-                title="Capture SDK — mobile RFID scanner"
-                description="Tag a plant, log a harvest, scan a transfer manifest. Bluetooth RFID + camera barcode fallback. Live validation against your Metrc or BioTrack connection. Designed for the field, not the desk."
-              />
-            }
+            demo={<CaptureDemo />}
           />
         </div>
 

@@ -523,3 +523,146 @@
 .cdemo-phone-screen .cdemo-actions {
   padding-bottom: 26px;
 }
+
+/* ──────────────────────────────────────────────────────────
+   Capture SDK demo additions — viewfinder, tag queue, scan animation
+   ────────────────────────────────────────────────────────── */
+.cdemo-viewfinder {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  margin: 24px auto 0;
+  aspect-ratio: 4 / 3;
+  background: var(--cdemo-paper-soft);
+  border: 1px solid var(--cdemo-edge);
+  overflow: hidden;
+}
+.cdemo-viewfinder::before,
+.cdemo-viewfinder::after,
+.cdemo-viewfinder > .cdemo-vf-tl,
+.cdemo-viewfinder > .cdemo-vf-tr,
+.cdemo-viewfinder > .cdemo-vf-bl,
+.cdemo-viewfinder > .cdemo-vf-br {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--cdemo-primary);
+}
+.cdemo-vf-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.cdemo-vf-tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+.cdemo-vf-bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+.cdemo-vf-br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+.cdemo-vf-line {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 1px;
+  background: var(--cdemo-primary);
+  opacity: 0.55;
+  top: 50%;
+  animation: cdemo-vf-scan 2.4s ease-in-out infinite;
+}
+@keyframes cdemo-vf-scan {
+  0%, 100% { transform: translateY(-30px); opacity: 0.3; }
+  50%      { transform: translateY(30px); opacity: 0.65; }
+}
+
+.cdemo-vf-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cdemo-ink-muted);
+}
+
+/* Tag queue cards */
+.cdemo-tag-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 22px;
+}
+.cdemo-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid var(--cdemo-edge);
+  background: var(--cdemo-paper);
+  border-radius: var(--cdemo-radius);
+}
+.cdemo-tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.cdemo-tag-dot.valid { background: var(--cdemo-primary); }
+.cdemo-tag-dot.pending {
+  background: transparent;
+  border: 1px solid var(--cdemo-ink-muted);
+  animation: cdemo-tag-pulse 1.2s ease-in-out infinite;
+}
+.cdemo-tag-dot.invalid { background: #8c3d2e; }
+@keyframes cdemo-tag-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+.cdemo-tag-meta {
+  flex: 1;
+  min-width: 0;
+}
+.cdemo-tag-id {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--cdemo-ink);
+}
+.cdemo-tag-name {
+  font-size: 11px;
+  color: var(--cdemo-ink-muted);
+  margin-top: 2px;
+}
+.cdemo-tag-status {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cdemo-ink-muted);
+}
+.cdemo-tag-status.valid { color: var(--cdemo-primary); }
+.cdemo-tag-status.invalid { color: #8c3d2e; }
+
+/* Scanner mode toggle inside Scan step */
+.cdemo-scanner-toggle {
+  display: flex;
+  gap: 0;
+  margin-top: 18px;
+  border: 1px solid var(--cdemo-edge);
+  border-radius: var(--cdemo-radius);
+  overflow: hidden;
+  align-self: center;
+}
+.cdemo-scanner-toggle button {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+  color: var(--cdemo-ink-muted);
+  cursor: pointer;
+  transition: 0.15s;
+}
+.cdemo-scanner-toggle button + button { border-left: 1px solid var(--cdemo-edge); }
+.cdemo-scanner-toggle button.active {
+  background: var(--cdemo-primary);
+  color: var(--cdemo-primary-fg);
+}
