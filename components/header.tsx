@@ -4,10 +4,9 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 
 const navLinks = [
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/enterprise", label: "For Enterprises" },
   { href: "/pricing", label: "Pricing" },
   { href: "https://docs.seedlink.dev", label: "Docs" },
+  { href: "/roadmap", label: "Roadmap" },
 ]
 
 export function Header() {

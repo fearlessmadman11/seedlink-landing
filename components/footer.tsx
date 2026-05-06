@@ -23,18 +23,6 @@ export function Footer() {
 
         <nav className="flex flex-wrap items-center gap-8">
           <Link
-            href="/how-it-works"
-            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
-          >
-            How it works
-          </Link>
-          <Link
-            href="/enterprise"
-            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
-          >
-            Enterprise
-          </Link>
-          <Link
             href="/pricing"
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
           >
@@ -45,6 +33,12 @@ export function Footer() {
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
           >
             Docs
+          </Link>
+          <Link
+            href="/roadmap"
+            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
+          >
+            Roadmap
           </Link>
           <Link
             href="mailto:sales@seedlink.dev"
