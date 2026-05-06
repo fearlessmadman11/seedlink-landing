@@ -35,12 +35,6 @@ export function Footer() {
             Docs
           </Link>
           <Link
-            href="/roadmap"
-            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
-          >
-            Roadmap
-          </Link>
-          <Link
             href="mailto:sales@seedlink.dev"
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
           >

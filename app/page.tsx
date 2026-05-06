@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero"
 import { BuildOnce } from "@/components/build-once"
 import { ForDevelopers } from "@/components/for-developers"
 import { HowItWorksSection } from "@/components/how-it-works-section"
+import { CallToAction } from "@/components/call-to-action"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <BuildOnce />
         <HowItWorksSection />
         <ForDevelopers />
+        <CallToAction />
       </main>
       <Footer />
     </div>

@@ -6,7 +6,6 @@ import Link from "next/link"
 const navLinks = [
   { href: "/pricing", label: "Pricing" },
   { href: "https://docs.seedlink.dev", label: "Docs" },
-  { href: "/roadmap", label: "Roadmap" },
 ]
 
 export function Header() {

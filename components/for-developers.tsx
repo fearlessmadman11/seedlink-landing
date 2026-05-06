@@ -1,5 +1,3 @@
-import { PythonLogo, TypeScriptLogo } from "@/components/logos"
-
 export function ForDevelopers() {
   return (
     <section className="border-t border-border px-6 py-24 md:px-12 md:py-32">
@@ -8,21 +6,22 @@ export function ForDevelopers() {
           Built for builders
         </p>
         <h2 className="mt-4 max-w-2xl font-serif text-3xl italic text-foreground md:text-4xl lg:text-5xl text-balance">
-          For developers and agents
+          Stable infrastructure. Real test data.
         </h2>
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/70">
+          State compliance providers change their APIs all the time. We absorb those changes so you can build something that lasts.
+        </p>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           <div className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50">
             <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-              MCP
+              Stability
             </p>
             <h3 className="mt-4 font-mono text-base text-foreground">
-              MCP server endpoint
+              We keep up with provider changes
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-foreground/70">
-              Hook AI agents directly into seed-to-sale data with a Model Context
-              Protocol endpoint. Tool calls, scoped credentials, and audit logs
-              out of the box.
+              When state systems change a field name, add a column, or break a response, we update the mapping. Your code keeps working without a deploy.
             </p>
           </div>
 
@@ -31,31 +30,23 @@ export function ForDevelopers() {
               Sandbox
             </p>
             <h3 className="mt-4 font-mono text-base text-foreground">
-              Sandbox environment
+              Free for every developer
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-foreground/70">
-              Build and test against a full sandbox with realistic state-system
-              fixtures. Identical schema to production — no surprises at
-              go-live.
+              Pre-seeded fixtures across facilities, packages, plants, harvests, transfers, sales, and lab results. Same schema as production. Pay only when you go live.
             </p>
           </div>
 
           <div className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50">
             <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-              SDKs
+              Webhooks
             </p>
             <h3 className="mt-4 font-mono text-base text-foreground">
-              Connect SDK
+              Push, not poll
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-foreground/70">
-              Pre-built component for collecting sensitive credentials and
-              authenticating users across Metrc, BioTrack, and every system we
-              support — drop it in and go.
+              Subscribe to inventory and compliance events. Signed deliveries, automatic retries. No cron jobs.
             </p>
-            <div className="mt-6 flex items-center gap-5 text-foreground/70">
-              <TypeScriptLogo className="h-6 w-6" />
-              <PythonLogo className="h-6 w-6" />
-            </div>
           </div>
         </div>
       </div>
