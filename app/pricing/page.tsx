@@ -47,8 +47,8 @@ export default function PricingPage() {
               Flat platform fee. Pay only for what you use.
             </h1>
             <p className="mt-6 max-w-2xl font-mono text-base leading-relaxed text-foreground/70 md:text-lg">
-              One plan, predictable overage pricing. No tiers, no per-seat
-              surcharges, no surprises.
+              One plan, predictable overage pricing. Sandbox is free for every
+              developer — pay only when you go live.
             </p>
           </div>
         </section>
@@ -76,6 +76,9 @@ export default function PricingPage() {
               <p className="mt-3 font-mono text-sm text-foreground/70">
                 + <span className="text-foreground">$0.005</span> per API
                 request beyond 100K/mo
+              </p>
+              <p className="mt-2 font-mono text-xs text-accent">
+                Sandbox is always free — only pay when you ship to production.
               </p>
 
               <p className="mt-6 text-sm text-foreground/60">
