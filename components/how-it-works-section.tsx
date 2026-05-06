@@ -2,6 +2,7 @@ import Link from "next/link"
 import type { ReactNode } from "react"
 import { ConnectDemo } from "@/components/connect-demo"
 import { CaptureDemo } from "@/components/capture-demo"
+import { StandardizeDemo } from "@/components/standardize-demo"
 
 type StepLayout = "left-text" | "right-text" | "centered"
 
@@ -125,13 +126,7 @@ export function HowItWorksSection() {
             number="02"
             title="Standardize."
             description="One unified data model across Metrc, BioTrack, and every system we support. Build against one schema — we absorb provider-specific quirks behind the scenes."
-            demo={
-              <PlaceholderDemo
-                label="Coming next"
-                title="Interactive request console"
-                description="Pick an endpoint, click Run, watch a real JSON response render with the actual sandbox data — packaged in the SeedLink envelope. Building this now."
-              />
-            }
+            demo={<StandardizeDemo />}
             layout="centered"
           />
 
