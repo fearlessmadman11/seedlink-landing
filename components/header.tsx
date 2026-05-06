@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 
 const navLinks = [
@@ -12,9 +12,23 @@ const navLinks = [
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <header className="w-full px-6 py-6 md:px-12 md:py-8">
+    <header
+      className={`fixed top-0 inset-x-0 z-50 w-full px-6 py-6 md:px-12 md:py-7 transition-colors duration-300 ${
+        scrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-border/40"
+          : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 text-foreground">
           <svg
@@ -45,7 +59,6 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Mobile hamburger */}
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -70,7 +83,6 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <nav className="mt-6 flex flex-col gap-6 border-t border-border pt-6 md:hidden">
           {navLinks.map((link) => (
