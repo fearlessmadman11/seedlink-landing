@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Webhook">
+  <circle cx="14" cy="46" r="5"/>
+  <circle cx="50" cy="46" r="5"/>
+  <path d="M14 46 Q 32 12 50 46"/>
+  <circle cx="32" cy="22" r="3" fill="currentColor"/>
+</svg>

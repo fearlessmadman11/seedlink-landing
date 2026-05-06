@@ -1,0 +1,8 @@
+<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Harvest">
+  <path d="M14 36 L18 54 L46 54 L50 36 Z"/>
+  <line x1="15" y1="42" x2="49" y2="42"/>
+  <line x1="16" y1="48" x2="48" y2="48"/>
+  <circle cx="22" cy="32" r="4"/>
+  <circle cx="32" cy="29" r="5"/>
+  <circle cx="42" cy="33" r="4"/>
+</svg>

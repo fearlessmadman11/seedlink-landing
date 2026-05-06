@@ -1,0 +1,9 @@
+<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plant">
+  <path d="M20 40 L18 56 L46 56 L44 40 Z"/>
+  <line x1="18" y1="40" x2="46" y2="40"/>
+  <line x1="32" y1="40" x2="32" y2="20"/>
+  <path d="M32 20 Q 22 16 18 8 Q 26 12 32 20"/>
+  <path d="M32 20 Q 42 16 46 8 Q 38 12 32 20"/>
+  <path d="M32 28 Q 24 26 20 20"/>
+  <path d="M32 28 Q 40 26 44 20"/>
+</svg>
