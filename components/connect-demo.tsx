@@ -14,6 +14,28 @@ const COLOR_PRESETS = [
   { hex: "#1a1a1a", label: "Black" },
 ]
 
+const BG_PRESETS: Record<Theme, { hex: string; label: string }[]> = {
+  light: [
+    { hex: "#f3ecd9", label: "Cream" },
+    { hex: "#ffffff", label: "White" },
+    { hex: "#f5f3ee", label: "Warm gray" },
+    { hex: "#f4f5f7", label: "Cool gray" },
+    { hex: "#fdfbf5", label: "Pale" },
+  ],
+  dark: [
+    { hex: "#1f2a1d", label: "Forest" },
+    { hex: "#0a0a0a", label: "Black" },
+    { hex: "#18181b", label: "Charcoal" },
+    { hex: "#1a1f2e", label: "Slate" },
+    { hex: "#1a1612", label: "Coffee" },
+  ],
+}
+
+const THEME_DEFAULT_BG: Record<Theme, string> = {
+  light: "#f3ecd9",
+  dark: "#1f2a1d",
+}
+
 const STATES = [
   "California",
   "Colorado",
@@ -63,15 +85,22 @@ function progressOf(step: Step): number {
 
 export function ConnectDemo() {
   const [theme, setTheme] = useState<Theme>("light")
+  const [background, setBackground] = useState(THEME_DEFAULT_BG.light)
   const [primary, setPrimary] = useState("#2d5240")
   const [step, setStep] = useState<Step>("provider")
   const [selectedState, setSelectedState] = useState("California")
 
   const customerName = "Acme Cannabis Co."
 
+  const handleThemeChange = (t: Theme) => {
+    setTheme(t)
+    setBackground(THEME_DEFAULT_BG[t])
+  }
+
   const cssVars = {
     "--cdemo-primary": primary,
     "--cdemo-primary-fg": primaryFg(primary),
+    "--cdemo-paper": background,
     "--cdemo-radius": "0px",
   } as CSSProperties
 
@@ -91,7 +120,7 @@ export function ConnectDemo() {
               <button
                 key={t}
                 type="button"
-                onClick={() => setTheme(t)}
+                onClick={() => handleThemeChange(t)}
                 className={`px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors ${
                   theme === t
                     ? "bg-foreground text-background"
@@ -104,10 +133,34 @@ export function ConnectDemo() {
           </div>
         </div>
 
-        {/* Colors */}
+        {/* Background */}
         <div className="flex items-center gap-2">
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
-            Color
+            Background
+          </span>
+          <div className="flex gap-1.5">
+            {BG_PRESETS[theme].map((c) => (
+              <button
+                key={c.hex}
+                type="button"
+                onClick={() => setBackground(c.hex)}
+                title={c.label}
+                aria-label={`Background: ${c.label}`}
+                style={{ background: c.hex }}
+                className={`h-6 w-6 border transition-transform hover:scale-110 ${
+                  background === c.hex
+                    ? "border-foreground ring-2 ring-foreground/30"
+                    : "border-border"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Accent (primary) */}
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
+            Accent
           </span>
           <div className="flex gap-1.5">
             {COLOR_PRESETS.map((c) => (
@@ -116,7 +169,7 @@ export function ConnectDemo() {
                 type="button"
                 onClick={() => setPrimary(c.hex)}
                 title={c.label}
-                aria-label={`Primary color: ${c.label}`}
+                aria-label={`Accent: ${c.label}`}
                 style={{ background: c.hex }}
                 className={`h-6 w-6 border transition-transform hover:scale-110 ${
                   primary === c.hex
@@ -220,7 +273,12 @@ export function ConnectDemo() {
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
           SDK init code
         </div>
-        <CodeSnippet theme={theme} primary={primary} customer={customerName} />
+        <CodeSnippet
+          theme={theme}
+          background={background}
+          primary={primary}
+          customer={customerName}
+        />
         <p className="font-mono text-[11px] leading-relaxed text-foreground/50">
           Drop this into your app. The iframe renders with the config you've selected — themed to
           match your brand, embedded next to your application chrome.
@@ -485,10 +543,12 @@ function ErrorStep() {
 
 function CodeSnippet({
   theme,
+  background,
   primary,
   customer,
 }: {
   theme: Theme
+  background: string
   primary: string
   customer: string
 }) {
@@ -498,6 +558,7 @@ function CodeSnippet({
       <span className="ck">SeedlinkConnect</span>.<span className="ck">create</span>{"({"}
       {"\n  "}token: <span className="cs">{"'lt_9f2c8a4b7e1d3f6g'"}</span>,
       {"\n  "}theme: <span className="cs">{`'${theme}'`}</span>,
+      {"\n  "}backgroundColor: <span className="cs">{`'${background}'`}</span>,
       {"\n  "}primaryColor: <span className="cs">{`'${primary}'`}</span>,
       {"\n  "}customerName: <span className="cs">{`'${escaped}'`}</span>,
       {"\n  "}onSuccess: (publicToken, metadata) {"=> {"}

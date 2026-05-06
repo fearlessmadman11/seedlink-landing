@@ -131,20 +131,19 @@
    ────────────────────────────────────────────────────────── */
 .cdemo {
   --cdemo-paper: #f3ecd9;
-  --cdemo-paper-soft: #ede5cf;
-  --cdemo-edge: #d8cfb5;
   --cdemo-ink: #1f3326;
   --cdemo-ink-soft: #3a4f3e;
   --cdemo-ink-muted: #6c7a68;
   --cdemo-primary: #2d5240;
   --cdemo-primary-fg: #f3ecd9;
   --cdemo-radius: 0px;
+  /* Auto-derived from paper + ink — adjusts when customer overrides background */
+  --cdemo-paper-soft: color-mix(in srgb, var(--cdemo-paper) 92%, var(--cdemo-ink) 8%);
+  --cdemo-edge: color-mix(in srgb, var(--cdemo-paper) 80%, var(--cdemo-ink) 20%);
   font-family: 'Inter', sans-serif;
 }
 .cdemo.dark {
   --cdemo-paper: #1f2a1d;
-  --cdemo-paper-soft: #2a3424;
-  --cdemo-edge: #3a4a35;
   --cdemo-ink: #ede5cf;
   --cdemo-ink-soft: #a8b39e;
   --cdemo-ink-muted: #7a8473;
