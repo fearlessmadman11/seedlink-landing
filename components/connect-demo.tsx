@@ -161,11 +161,18 @@ export function ConnectDemo() {
         </div>
       </div>
 
-      {/* SDK iframe wrapped in a phone frame — reads as a real mobile surface */}
+      {/* SDK iframe wrapped in an iPhone-shaped phone frame */}
       <div className={`cdemo ${theme === "dark" ? "dark" : ""}`} style={cssVars}>
         <div className="cdemo-phone">
-          <div className="cdemo-phone-notch" />
+          {/* Side buttons — physical hardware hints */}
+          <div className="cdemo-phone-btn cdemo-phone-btn-action" />
+          <div className="cdemo-phone-btn cdemo-phone-btn-vol-up" />
+          <div className="cdemo-phone-btn cdemo-phone-btn-vol-down" />
+          <div className="cdemo-phone-btn cdemo-phone-btn-power" />
+
           <div className="cdemo-phone-screen">
+            <div className="cdemo-phone-island" />
+            <div className="cdemo-phone-home" />
             <div className="cdemo-iframe">
           {/* Header */}
           <div className="cdemo-header">
@@ -205,7 +212,6 @@ export function ConnectDemo() {
           <ActionBar step={step} setStep={setStep} />
             </div>
           </div>
-          <div className="cdemo-phone-home" />
         </div>
       </div>
 
