@@ -3,18 +3,46 @@ import type { ReactNode } from "react"
 import { ConnectDemo } from "@/components/connect-demo"
 import { CaptureDemo } from "@/components/capture-demo"
 
+type StepLayout = "left-text" | "right-text" | "centered"
+
 type StepRowProps = {
   number: string
   title: string
   description: string
   demo: ReactNode
+  layout?: StepLayout
 }
 
-function StepRow({ number, title, description, demo }: StepRowProps) {
+function StepRow({ number, title, description, demo, layout = "left-text" }: StepRowProps) {
+  if (layout === "centered") {
+    return (
+      <div>
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="font-mono text-xs uppercase tracking-[0.25em] text-foreground/50">
+            Step {number}
+          </div>
+          <h3 className="mt-4 font-serif text-4xl italic leading-[1.05] text-foreground md:text-5xl lg:text-6xl text-balance">
+            {title}
+          </h3>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-foreground/70 lg:text-[17px]">
+            {description}
+          </p>
+        </div>
+        <div className="mt-16 mx-auto max-w-5xl">{demo}</div>
+      </div>
+    )
+  }
+
+  const textOnRight = layout === "right-text"
+
   return (
-    <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16 xl:gap-20">
-      {/* LEFT — text block, all left-aligned, tight rhythm */}
-      <div className="lg:sticky lg:top-32">
+    <div
+      className={`grid items-start gap-12 lg:gap-16 xl:gap-20 ${
+        textOnRight ? "lg:grid-cols-[1.2fr_1fr]" : "lg:grid-cols-[1fr_1.2fr]"
+      }`}
+    >
+      {/* TEXT — sticky on desktop so it stays in view as the demo scrolls */}
+      <div className={`lg:sticky lg:top-32 ${textOnRight ? "lg:order-2" : ""}`}>
         <div className="font-mono text-xs uppercase tracking-[0.25em] text-foreground/50">
           Step {number}
         </div>
@@ -26,8 +54,8 @@ function StepRow({ number, title, description, demo }: StepRowProps) {
         </p>
       </div>
 
-      {/* RIGHT — demo */}
-      <div className="min-w-0">{demo}</div>
+      {/* DEMO */}
+      <div className={`min-w-0 ${textOnRight ? "lg:order-1" : ""}`}>{demo}</div>
     </div>
   )
 }
@@ -83,13 +111,14 @@ export function HowItWorksSection() {
           </h2>
         </div>
 
-        {/* Steps — text-left + demo-right */}
+        {/* Steps — alternating layout: left, center, right */}
         <div className="mt-24 space-y-32 md:space-y-40">
           <StepRow
             number="01"
             title="Connect."
             description="A drop-in credential-collection iframe. Theme it to your brand; customer credentials stay in our vault, never touch your servers."
             demo={<ConnectDemo />}
+            layout="left-text"
           />
 
           <StepRow
@@ -103,6 +132,7 @@ export function HowItWorksSection() {
                 description="Pick an endpoint, click Run, watch a real JSON response render with the actual sandbox data — packaged in the SeedLink envelope. Building this now."
               />
             }
+            layout="centered"
           />
 
           <StepRow
@@ -110,6 +140,7 @@ export function HowItWorksSection() {
             title="Capture."
             description="A drop-in scanner SDK for cultivators and processors. Read RFID tags, validate against your connected provider in real time, and write back to compliance — without leaving your app."
             demo={<CaptureDemo />}
+            layout="right-text"
           />
         </div>
 
