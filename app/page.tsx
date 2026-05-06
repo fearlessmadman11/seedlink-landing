@@ -12,8 +12,8 @@ export default function Home() {
       <main>
         <Hero />
         <BuildOnce />
-        <ForDevelopers />
         <HowItWorksSection />
+        <ForDevelopers />
       </main>
       <Footer />
     </div>
