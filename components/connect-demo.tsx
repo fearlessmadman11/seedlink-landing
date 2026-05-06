@@ -136,12 +136,12 @@ export function ConnectDemo() {
           <div className="flex flex-wrap gap-1">
             {(
               [
-                ["provider", "1"],
-                ["state", "2"],
-                ["credentials", "3"],
-                ["validating", "4"],
-                ["success", "5"],
-                ["error", "6"],
+                ["provider", "Provider"],
+                ["state", "State"],
+                ["credentials", "Credentials"],
+                ["validating", "Validating"],
+                ["success", "Success"],
+                ["error", "Error"],
               ] as [Step, string][]
             ).map(([s, label]) => (
               <button
@@ -161,9 +161,12 @@ export function ConnectDemo() {
         </div>
       </div>
 
-      {/* SDK iframe — single column, mobile-app-shaped */}
+      {/* SDK iframe wrapped in a phone frame — reads as a real mobile surface */}
       <div className={`cdemo ${theme === "dark" ? "dark" : ""}`} style={cssVars}>
-        <div className="cdemo-iframe">
+        <div className="cdemo-phone">
+          <div className="cdemo-phone-notch" />
+          <div className="cdemo-phone-screen">
+            <div className="cdemo-iframe">
           {/* Header */}
           <div className="cdemo-header">
             <div className="cdemo-customer">{customerName}</div>
@@ -200,6 +203,9 @@ export function ConnectDemo() {
 
           {/* Action bar */}
           <ActionBar step={step} setStep={setStep} />
+            </div>
+          </div>
+          <div className="cdemo-phone-home" />
         </div>
       </div>
 

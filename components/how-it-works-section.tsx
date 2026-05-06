@@ -87,7 +87,7 @@ export function HowItWorksSection() {
           <StepRow
             number="01"
             title="Connect."
-            description="Drop a credential-collection iframe into your app. Match it to your brand. Hand off the link token. Your users authenticate with their state-system account in a SeedLink-hosted modal — credentials never touch your servers."
+            description="A drop-in credential-collection iframe. Theme it to your brand; customer credentials stay in our vault, never touch your servers."
             demo={<ConnectDemo />}
           />
 

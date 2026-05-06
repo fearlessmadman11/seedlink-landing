@@ -417,3 +417,69 @@
 .cdemo-code .ck { color: #c5a563; }
 .cdemo-code .cs { color: #a8d18a; }
 .cdemo-code .cc { color: #6c6354; }
+
+/* Phone frame wrapping — makes the SDK read as a real mobile surface */
+.cdemo-phone {
+  position: relative;
+  background: linear-gradient(175deg, #1a1817 0%, #0d0c0b 100%);
+  padding: 18px 12px 24px;
+  border-radius: 40px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  max-width: 464px;
+  margin: 0 auto;
+}
+
+.cdemo-phone-notch {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  height: 22px;
+  background: #050403;
+  border-radius: 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12px;
+  gap: 6px;
+}
+.cdemo-phone-notch::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a1817;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+}
+
+.cdemo-phone-home {
+  position: absolute;
+  bottom: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 2px;
+}
+
+.cdemo-phone-screen {
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--cdemo-paper);
+}
+
+/* Iframe inside phone — suppress its own border/shadow, fill the screen */
+.cdemo-phone-screen .cdemo-iframe {
+  border: none;
+  box-shadow: none;
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
