@@ -93,8 +93,8 @@ export function HowItWorksSection() {
 
           <StepRow
             number="02"
-            title="Call the standardized API."
-            description="One set of endpoints — facilities, packages, plants, harvests, transfers, sales, lab results. Same shape across every state system. Build against one schema; SeedLink absorbs the differences."
+            title="Standardize."
+            description="One unified data model across Metrc, BioTrack, and every system we support. Build against one schema — we absorb provider-specific quirks behind the scenes."
             demo={
               <PlaceholderDemo
                 label="Coming next"
@@ -106,13 +106,13 @@ export function HowItWorksSection() {
 
           <StepRow
             number="03"
-            title="Compliance, handled."
-            description="When a state system changes its API or rules, SeedLink absorbs the update behind the scenes. Field mapping, validation, and reporting formats stay consistent — no rewrites on your side."
+            title="Capture."
+            description="A drop-in scanner SDK for cultivators and processors. Read RFID tags, validate against your connected provider in real time, and write back to compliance — without leaving your app."
             demo={
               <PlaceholderDemo
                 label="Coming next"
-                title="Field-by-field normalization viewer"
-                description="See raw Metrc and BioTrack responses on the left, the SeedLink unified shape on the right. Hover any field to see how it maps. The 'we handle the differences' claim, made visible."
+                title="Capture SDK — mobile RFID scanner"
+                description="Tag a plant, log a harvest, scan a transfer manifest. Bluetooth RFID + camera barcode fallback. Live validation against your Metrc or BioTrack connection. Designed for the field, not the desk."
               />
             }
           />
