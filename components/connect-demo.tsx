@@ -43,12 +43,21 @@ const SeedlinkMark = ({ size = 11 }: { size?: number }) => (
   </svg>
 )
 
-const Powered = () => (
-  <span className="cdemo-powered">
-    <SeedlinkMark />
-    Powered by SeedLink
-  </span>
-)
+/** Maps the active step onto the 3-step list shown in the left pane. */
+function progressOf(step: Step): { active: 1 | 2 | 3; done: boolean } {
+  switch (step) {
+    case "provider":
+      return { active: 1, done: false }
+    case "state":
+      return { active: 2, done: false }
+    case "credentials":
+    case "validating":
+    case "error":
+      return { active: 3, done: false }
+    case "success":
+      return { active: 3, done: true }
+  }
+}
 
 export function ConnectDemo() {
   const [theme, setTheme] = useState<Theme>("light")
@@ -64,14 +73,13 @@ export function ConnectDemo() {
     "--cdemo-radius": "0px",
   } as CSSProperties
 
-  const progress = step === "provider" ? 1 : step === "state" ? 2 : 3
+  const { active, done } = progressOf(step)
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_minmax(380px,460px)]">
-      {/* LEFT: SDK preview frame */}
+    <div className="space-y-6">
+      {/* Controls strip */}
       <div className={`cdemo ${theme === "dark" ? "dark" : ""}`} style={cssVars}>
-        {/* Controls strip */}
-        <div className="mb-6 flex flex-wrap items-center gap-x-8 gap-y-3">
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
           {/* Theme */}
           <div className="flex items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
@@ -110,7 +118,9 @@ export function ConnectDemo() {
                   aria-label={`Primary color: ${c.label}`}
                   style={{ background: c.hex }}
                   className={`h-6 w-6 border transition-transform hover:scale-110 ${
-                    primary === c.hex ? "border-foreground ring-2 ring-foreground/30" : "border-border"
+                    primary === c.hex
+                      ? "border-foreground ring-2 ring-foreground/30"
+                      : "border-border"
                   }`}
                 />
               ))}
@@ -149,10 +159,12 @@ export function ConnectDemo() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* The SDK iframe content */}
+      {/* SDK iframe — the cream product surface */}
+      <div className={`cdemo ${theme === "dark" ? "dark" : ""}`} style={cssVars}>
         <div className="cdemo-iframe">
-          {/* Header */}
+          {/* Top header — customer brand + close */}
           <div className="cdemo-header">
             <div className="cdemo-customer">{customerName}</div>
             <div className="cdemo-close">
@@ -162,43 +174,66 @@ export function ConnectDemo() {
             </div>
           </div>
 
-          {/* Progress */}
-          <div className="cdemo-progress">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className={`cdemo-seg ${i <= progress ? "active" : ""}`} />
-            ))}
-          </div>
+          {/* Body: split into LEFT context pane + RIGHT active pane */}
+          <div className="cdemo-split">
+            <aside className="cdemo-left-pane">
+              <ul className="cdemo-step-list" aria-label="Connection progress">
+                <li className={active === 1 ? "active" : active > 1 ? "complete" : ""}>
+                  <span className="dot" /> 01 · Provider
+                </li>
+                <li className={active === 2 ? "active" : active > 2 ? "complete" : ""}>
+                  <span className="dot" /> 02 · State
+                </li>
+                <li className={active === 3 ? (done ? "complete" : "active") : ""}>
+                  <span className="dot" /> 03 · Authorize
+                </li>
+              </ul>
 
-          {/* Body */}
-          <div className="cdemo-body">
-            {step === "provider" && <ProviderStep onSelect={() => setStep("state")} />}
-            {step === "state" && (
-              <StateStep
-                selected={selectedState}
-                onSelect={setSelectedState}
-                onBack={() => setStep("provider")}
-                onContinue={() => setStep("credentials")}
-              />
-            )}
-            {step === "credentials" && (
-              <CredentialsStep
-                selectedState={selectedState}
-                customerName={customerName}
-                onBack={() => setStep("state")}
-                onConnect={() => setStep("validating")}
-              />
-            )}
-            {step === "validating" && <ValidatingStep selectedState={selectedState} />}
-            {step === "success" && <SuccessStep customerName={customerName} onDone={() => setStep("provider")} />}
-            {step === "error" && (
-              <ErrorStep onBack={() => setStep("state")} onRetry={() => setStep("validating")} />
-            )}
+              {step === "success" && (
+                <img
+                  className="cdemo-left-engraving"
+                  src="/illustrations/engraved/connection.png"
+                  alt=""
+                  aria-hidden="true"
+                />
+              )}
+
+              <div className="cdemo-left-footer">
+                <SeedlinkMark size={11} />
+                <span>Powered by SeedLink</span>
+              </div>
+            </aside>
+
+            <div className="cdemo-right-pane">
+              {step === "provider" && <ProviderStep onSelect={() => setStep("state")} />}
+              {step === "state" && (
+                <StateStep
+                  selected={selectedState}
+                  onSelect={setSelectedState}
+                  onBack={() => setStep("provider")}
+                  onContinue={() => setStep("credentials")}
+                />
+              )}
+              {step === "credentials" && (
+                <CredentialsStep
+                  selectedState={selectedState}
+                  customerName={customerName}
+                  onBack={() => setStep("state")}
+                  onConnect={() => setStep("validating")}
+                />
+              )}
+              {step === "validating" && <ValidatingStep selectedState={selectedState} />}
+              {step === "success" && <SuccessStep customerName={customerName} onDone={() => setStep("provider")} />}
+              {step === "error" && (
+                <ErrorStep onBack={() => setStep("state")} onRetry={() => setStep("validating")} />
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* RIGHT: Generated code snippet */}
-      <div className="flex flex-col gap-3">
+      {/* Code snippet — full width below */}
+      <div className="space-y-3">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
           SDK init code
         </div>
@@ -213,18 +248,16 @@ export function ConnectDemo() {
 }
 
 /* ───────────────────────────────────────────────
-   Step renderers
+   Step renderers — each renders its content into the right pane.
+   Action buttons use cdemo-right-actions (sticks to bottom via margin-top: auto).
    ─────────────────────────────────────────────── */
 
 function ProviderStep({ onSelect }: { onSelect: () => void }) {
   return (
     <>
-      <div className="cdemo-eyebrow">Step 1 of 3</div>
-      <h3 className="cdemo-title">Connect your compliance system</h3>
-      <p className="cdemo-lede">
-        Pick the seed-to-sale system your facility uses. We'll collect your credentials securely
-        and verify the connection.
-      </p>
+      <div className="cdemo-eyebrow">Connect your compliance system</div>
+      <h3 className="cdemo-title">Pick your seed-to-sale provider</h3>
+      <p className="cdemo-lede">We'll collect your credentials securely and verify the connection.</p>
       <div className="mt-7 flex flex-col gap-2.5">
         <button type="button" className="cdemo-tile" onClick={onSelect}>
           <div className="flex h-7 w-14 flex-shrink-0 items-center" style={{ color: "var(--cdemo-ink)" }}>
@@ -285,11 +318,9 @@ function StateStep({
 }) {
   return (
     <>
-      <div className="cdemo-eyebrow">Step 2 of 3 · Metrc</div>
+      <div className="cdemo-eyebrow">Metrc · State</div>
       <h3 className="cdemo-title">Which state do you operate in?</h3>
-      <p className="cdemo-lede">
-        Metrc credentials are state-specific. Pick the state where your facility holds its license.
-      </p>
+      <p className="cdemo-lede">Metrc credentials are state-specific. Pick the state where your facility holds its license.</p>
       <div className="cdemo-state-grid">
         {STATES.map((s) => (
           <button
@@ -302,8 +333,7 @@ function StateStep({
           </button>
         ))}
       </div>
-      <div className="cdemo-actions" style={{ borderTop: "none", padding: "24px 0 0", marginTop: "24px" }}>
-        <Powered />
+      <div className="cdemo-right-actions">
         <button type="button" className="cdemo-btn ghost" onClick={onBack}>
           Back
         </button>
@@ -328,7 +358,7 @@ function CredentialsStep({
 }) {
   return (
     <>
-      <div className="cdemo-eyebrow">Step 3 of 3 · Metrc · {selectedState}</div>
+      <div className="cdemo-eyebrow">Metrc · {selectedState} · Authorize</div>
       <h3 className="cdemo-title">Enter your Metrc credentials</h3>
       <p className="cdemo-lede">
         Your User API Key is issued by your Metrc state administrator and lives in your Metrc account
@@ -352,8 +382,7 @@ function CredentialsStep({
           </div>
         </div>
       </div>
-      <div className="cdemo-actions" style={{ borderTop: "none", padding: "24px 0 0", marginTop: "24px" }}>
-        <Powered />
+      <div className="cdemo-right-actions">
         <button type="button" className="cdemo-btn ghost" onClick={onBack}>
           Back
         </button>
@@ -367,7 +396,7 @@ function CredentialsStep({
 
 function ValidatingStep({ selectedState }: { selectedState: string }) {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-4 py-14">
+    <div className="flex flex-1 flex-col items-center justify-center gap-4 py-10">
       <div className="cdemo-spinner" />
       <div
         className="font-mono text-[11px] uppercase tracking-[0.18em]"
@@ -388,12 +417,7 @@ function ValidatingStep({ selectedState }: { selectedState: string }) {
 function SuccessStep({ customerName, onDone }: { customerName: string; onDone: () => void }) {
   return (
     <>
-      <div className="flex flex-col items-center gap-3 px-5 pt-8 pb-4 text-center">
-        <img
-          className="cdemo-success-engraving"
-          src="/illustrations/engraved/connection.png"
-          alt="Two grafted cannabis stems — Connection"
-        />
+      <div className="flex flex-1 flex-col items-center justify-center gap-3 py-6 text-center">
         <h3 className="cdemo-title text-center">You're connected.</h3>
         <p
           className="max-w-[320px] text-[13px] leading-relaxed"
@@ -410,9 +434,8 @@ function SuccessStep({ customerName, onDone }: { customerName: string; onDone: (
           2 facilities found · Active
         </p>
       </div>
-      <div className="cdemo-actions">
-        <Powered />
-        <button type="button" className="cdemo-btn" style={{ marginLeft: "auto" }} onClick={onDone}>
+      <div className="cdemo-right-actions">
+        <button type="button" className="cdemo-btn" onClick={onDone}>
           Done
         </button>
       </div>
@@ -423,7 +446,7 @@ function SuccessStep({ customerName, onDone }: { customerName: string; onDone: (
 function ErrorStep({ onBack, onRetry }: { onBack: () => void; onRetry: () => void }) {
   return (
     <>
-      <div className="cdemo-eyebrow">Step 3 of 3 · Metrc · California</div>
+      <div className="cdemo-eyebrow">Metrc · California · Authorize</div>
       <h3 className="cdemo-title">We couldn't validate that key</h3>
       <p className="cdemo-lede">
         Metrc rejected the credentials. Common causes: an expired key, a key for the wrong state, or
@@ -442,8 +465,7 @@ function ErrorStep({ onBack, onRetry }: { onBack: () => void; onRetry: () => voi
           <input type="password" placeholder="Paste your User API Key" autoComplete="off" />
         </div>
       </div>
-      <div className="cdemo-actions" style={{ borderTop: "none", padding: "24px 0 0", marginTop: "24px" }}>
-        <Powered />
+      <div className="cdemo-right-actions">
         <button type="button" className="cdemo-btn ghost" onClick={onBack}>
           Back
         </button>
