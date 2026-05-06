@@ -20,7 +20,7 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-24 pt-40 md:px-12 md:pb-32 md:pt-48">
         <h1 className="max-w-3xl font-serif text-5xl italic leading-[1.05] text-foreground md:text-6xl lg:text-7xl xl:text-[88px] text-balance">
-          A single API for cannabis track and trace
+          A developer platform for cannabis track and trace
         </h1>
 
         <p className="mt-8 max-w-xl font-mono text-base leading-relaxed text-foreground/80 md:text-lg">
