@@ -1,21 +1,62 @@
 import { BioTrackLogo, MetrcLogo } from "@/components/logos"
 
-const integrations = [
+type Integration = {
+  name: string
+  logo: typeof MetrcLogo
+  status: { label: string; type: "available" | "in-progress" }
+  description: string
+  statesLabel: string
+  states: string[]
+}
+
+const integrations: Integration[] = [
   {
     name: "Metrc",
     logo: MetrcLogo,
-    states: "20+ states",
+    status: { label: "9 states", type: "available" },
     description:
-      "Full Metrc API coverage — packages, plants, transfers, harvests, and reports across every Metrc state.",
+      "Full Metrc API coverage — facilities, packages, plants, harvests, transfers, sales, and lab results across every Metrc state we support.",
+    statesLabel: "Available",
+    states: [
+      "California",
+      "Colorado",
+      "Massachusetts",
+      "Maryland",
+      "Michigan",
+      "Missouri",
+      "Nevada",
+      "Oklahoma",
+      "Oregon",
+    ],
   },
   {
     name: "BioTrack",
     logo: BioTrackLogo,
-    states: "WA, IL, ND, NM, NY",
+    status: { label: "Coming soon", type: "in-progress" },
     description:
-      "Native BioTrack support — credential linking, inventory, manifests, and reporting normalized to the same data model.",
+      "BioTrack support is rolling out — same unified data model, same credential vault, same Connect SDK flow.",
+    statesLabel: "Planned",
+    states: ["Illinois", "New Mexico", "Hawaii", "New Hampshire"],
   },
 ]
+
+function StatusBadge({ status }: { status: Integration["status"] }) {
+  const isAvailable = status.type === "available"
+  return (
+    <span
+      className={`inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider ${
+        isAvailable ? "text-accent" : "text-foreground/50"
+      }`}
+    >
+      <span
+        className={`h-1.5 w-1.5 ${
+          isAvailable ? "bg-accent" : "border border-foreground/40"
+        }`}
+      />
+      {status.label}
+    </span>
+  )
+}
 
 export function BuildOnce() {
   return (
@@ -25,8 +66,8 @@ export function BuildOnce() {
           Build once. Integrate everywhere.
         </h2>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/70">
-          One unified API across every seed-to-sale platform. Build against a
-          single data model — we handle the differences between state systems
+          One unified API across every state compliance provider. Build against
+          a single data model — we handle the differences between state systems
           behind the scenes.
         </p>
 
@@ -40,13 +81,29 @@ export function BuildOnce() {
               >
                 <div className="flex items-center justify-between gap-4">
                   <Logo className="h-8 w-auto text-foreground" />
-                  <span className="font-mono text-xs uppercase tracking-wider text-accent">
-                    {integration.states}
-                  </span>
+                  <StatusBadge status={integration.status} />
                 </div>
+
                 <p className="mt-8 text-sm leading-relaxed text-foreground/70">
                   {integration.description}
                 </p>
+
+                <div className="mt-8 border-t border-border pt-6">
+                  <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+                    {integration.statesLabel}
+                  </p>
+                  <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3">
+                    {integration.states.map((state) => (
+                      <li
+                        key={state}
+                        className="flex items-start gap-2 text-sm text-foreground/80"
+                      >
+                        <span className="mt-2 h-1 w-1 shrink-0 bg-accent" />
+                        {state}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )
           })}
