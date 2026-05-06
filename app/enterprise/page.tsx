@@ -1,6 +1,65 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
+const available = [
+  {
+    name: "Per-organization multi-tenancy",
+    description:
+      "Every resource — connections, keys, webhooks, audit records — is foreign-keyed to an organization. Auth context carries org_id; queries are scoped at the middleware layer. No shared state between tenants.",
+  },
+  {
+    name: "AES-256-GCM credential encryption at rest",
+    description:
+      "State-system credentials are encrypted with AES-256-GCM and scrypt-derived keys. Stored format is salt:iv:authTag:ciphertext, decrypted only when an adapter needs to call the upstream system. Key rotation is supported.",
+  },
+  {
+    name: "Sandbox / production environment isolation",
+    description:
+      "Sandbox and production are separate at the data layer — keys, connections, webhook deliveries, and audit logs all carry an environment flag. Live credentials cannot reach sandbox data, and vice versa.",
+  },
+]
+
+const inProgress = [
+  {
+    name: "SSO via WorkOS",
+    description:
+      "OAuth-based SSO with WorkOS, supporting Okta, Azure AD, Google Workspace, and any SAML 2.0 IdP. Code is in place; rolling out to design-partner enterprises before general availability.",
+  },
+  {
+    name: "Audit logging",
+    description:
+      "Org-scoped activity log with action, actor, resource, and metadata. Backend writes to a local AuditLog table and forwards to WorkOS Audit Logs. Dashboard query UI and export tooling still in build.",
+  },
+  {
+    name: "Role-based access control",
+    description:
+      "Three-role hierarchy — Viewer, Member, Admin — enforced via route middleware. The roles exist and gate writes today; we're polishing the team-management UI and invitation flow.",
+  },
+  {
+    name: "Webhooks with retry delivery",
+    description:
+      "Event dispatcher with per-environment delivery queues, signature verification, and tracked retry attempts. Backend is functional; we're hardening the developer-facing endpoint configuration UI.",
+  },
+]
+
+function StatusBadge({ status }: { status: "available" | "in-progress" }) {
+  const isAvailable = status === "available"
+  return (
+    <span
+      className={`inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest ${
+        isAvailable ? "text-accent" : "text-foreground/50"
+      }`}
+    >
+      <span
+        className={`h-1.5 w-1.5 ${
+          isAvailable ? "bg-accent" : "border border-foreground/40"
+        }`}
+      />
+      {isAvailable ? "Available" : "In progress"}
+    </span>
+  )
+}
+
 export default function EnterprisePage() {
   return (
     <div className="min-h-screen bg-background">
@@ -10,257 +69,48 @@ export default function EnterprisePage() {
         {/* Hero */}
         <section className="px-6 pb-20 pt-24 md:px-12 md:pb-28 md:pt-32">
           <div className="mx-auto max-w-7xl">
-            <h1 className="max-w-4xl font-serif text-4xl italic leading-tight text-foreground md:text-5xl lg:text-6xl text-balance">
-              Built for enterprise compliance teams
+            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+              Enterprise roadmap
+            </p>
+            <h1 className="mt-4 max-w-4xl font-serif text-4xl italic leading-tight text-foreground md:text-5xl lg:text-6xl text-balance">
+              What we have. What we're building.
             </h1>
             <p className="mt-6 max-w-2xl font-mono text-base leading-relaxed text-foreground/70 md:text-lg">
-              SSO, audit logging, and organization management — designed for
-              teams that need security, visibility, and control.
+              We'd rather tell you the truth about where we are than ship a
+              brochure. Here's the state of SeedLink's enterprise capabilities
+              today.
             </p>
           </div>
         </section>
 
-        {/* SSO / SAML */}
+        {/* Available */}
         <section className="border-t border-border px-6 py-24 md:px-12">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-              <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-                  Authentication
-                </p>
-                <h2 className="mt-4 font-serif text-3xl italic text-foreground md:text-4xl">
-                  SSO / SAML
-                </h2>
-                <p className="mt-6 max-w-lg text-sm leading-relaxed text-foreground/70">
-                  Enable single sign-on for your organization with SAML 2.0.
-                  Your team authenticates through your existing identity provider
-                  — no separate credentials to manage.
-                </p>
-
-                <ul className="mt-8 space-y-3">
-                  {[
-                    "SAML 2.0 single sign-on",
-                    "Works with Okta, Azure AD, Google Workspace",
-                    "Automatic user provisioning",
-                    "Available on Growth + Enterprise plans",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" />
-                      <span className="text-sm text-foreground/70">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="self-start border border-border p-8">
-                <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-                  Supported providers
-                </p>
-                <div className="mt-6 grid grid-cols-2 gap-4">
-                  {["Okta", "Azure AD", "Google Workspace", "OneLogin"].map(
-                    (provider) => (
-                      <div
-                        key={provider}
-                        className="border border-border p-4 text-center transition-colors hover:border-accent/50"
-                      >
-                        <span className="font-mono text-sm text-foreground/70">
-                          {provider}
-                        </span>
-                      </div>
-                    )
-                  )}
-                </div>
-                <p className="mt-6 font-mono text-xs text-foreground/40">
-                  Any SAML 2.0 compatible provider is supported.
-                </p>
-              </div>
+            <div className="flex items-center gap-4">
+              <StatusBadge status="available" />
+              <span className="font-mono text-xs text-foreground/40">
+                {available.length} capabilities
+              </span>
             </div>
-          </div>
-        </section>
-
-        {/* Audit Logging */}
-        <section className="border-t border-border px-6 py-24 md:px-12">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-              <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-                  Visibility
-                </p>
-                <h2 className="mt-4 font-serif text-3xl italic text-foreground md:text-4xl">
-                  Audit logging
-                </h2>
-                <p className="mt-6 max-w-lg text-sm leading-relaxed text-foreground/70">
-                  Every action in your organization is logged with a full audit
-                  trail. Know who did what, when, and from where — queryable,
-                  exportable, and compliance-ready.
-                </p>
-
-                <ul className="mt-8 space-y-3">
-                  {[
-                    "Full audit trail for every action",
-                    "Queryable logs with filtering and search",
-                    "Exportable for compliance reporting",
-                    "Real-time event streaming",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" />
-                      <span className="text-sm text-foreground/70">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="self-start border border-border bg-card">
-                <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-                  <span className="font-mono text-xs text-foreground/50">
-                    audit-log.json
-                  </span>
-                </div>
-                <pre className="overflow-x-auto p-6">
-                  <code className="font-mono text-sm leading-relaxed text-foreground/90">
-                    {`{
-  "id": "evt_abc123",
-  "action": "connection.created",
-  "actor": {
-    "id": "user_456",
-    "email": "admin@company.com"
-  },
-  "target": {
-    "type": "connection",
-    "id": "conn_789"
-  },
-  "metadata": {
-    "provider": "metrc",
-    "state": "CA"
-  },
-  "occurred_at": "2024-01-15T14:30:00Z"
-}`}
-                  </code>
-                </pre>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Organization Management */}
-        <section className="border-t border-border px-6 py-24 md:px-12">
-          <div className="mx-auto max-w-7xl">
-            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-              Control
-            </p>
-            <h2 className="mt-4 font-serif text-3xl italic text-foreground md:text-4xl">
-              Organization management
+            <h2 className="mt-4 max-w-2xl font-serif text-3xl italic text-foreground md:text-4xl">
+              Available today
             </h2>
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-foreground/70">
-              Multi-tenant organizations with role-based access control. Manage
-              team members, API keys, and environments from a single dashboard.
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/60">
+              Foundational infrastructure that every customer relies on from day
+              one. These are non-negotiable — the platform doesn't function
+              without them.
             </p>
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  title: "Role-based access",
-                  description:
-                    "Three permission levels — Viewer, Member, and Admin — with granular control over who can access what.",
-                  details: [
-                    "Viewer: read-only dashboard access",
-                    "Member: API access + connections",
-                    "Admin: full org management",
-                  ],
-                },
-                {
-                  title: "Environment isolation",
-                  description:
-                    "Sandbox and live environments are fully separated. API keys, connections, and data are isolated by design.",
-                  details: [
-                    "Separate API keys per environment",
-                    "Isolated connection pools",
-                    "Independent rate limits",
-                  ],
-                },
-                {
-                  title: "API key management",
-                  description:
-                    "Create, rotate, and revoke API keys from the dashboard. Each key is scoped to a specific environment.",
-                  details: [
-                    "Per-environment key scoping",
-                    "Key rotation without downtime",
-                    "Usage tracking per key",
-                  ],
-                },
-              ].map((card) => (
+              {available.map((item) => (
                 <div
-                  key={card.title}
+                  key={item.name}
                   className="border border-border p-8 transition-colors hover:border-accent/50"
                 >
                   <h3 className="font-mono text-sm uppercase tracking-wider text-foreground">
-                    {card.title}
+                    {item.name}
                   </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-foreground/70">
-                    {card.description}
-                  </p>
-                  <ul className="mt-6 space-y-2">
-                    {card.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" />
-                        <span className="text-sm text-foreground/60">
-                          {detail}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Security callout */}
-        <section className="border-t border-border px-6 py-24 md:px-12">
-          <div className="mx-auto max-w-7xl">
-            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-              Security
-            </p>
-            <h2 className="mt-4 font-serif text-3xl italic text-foreground md:text-4xl">
-              Security by default
-            </h2>
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-foreground/70">
-              Every layer of SeedLink is built with security and compliance in
-              mind.
-            </p>
-
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  label: "Encryption",
-                  value: "AES-256-GCM",
-                  description:
-                    "All credentials encrypted at rest with AES-256-GCM and scrypt key derivation",
-                },
-                {
-                  label: "Isolation",
-                  value: "Per-org",
-                  description:
-                    "Complete tenant isolation — credentials, connections, and data are never shared",
-                },
-                {
-                  label: "Environments",
-                  value: "Separated",
-                  description:
-                    "Sandbox and production environments are architecturally isolated",
-                },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="border border-border p-8 transition-colors hover:border-accent/50"
-                >
-                  <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-                    {item.label}
-                  </p>
-                  <p className="mt-4 font-mono text-2xl text-foreground">
-                    {item.value}
-                  </p>
-                  <p className="mt-4 text-sm text-foreground/70">
+                  <p className="mt-6 text-sm leading-relaxed text-foreground/70">
                     {item.description}
                   </p>
                 </div>
@@ -269,6 +119,57 @@ export default function EnterprisePage() {
           </div>
         </section>
 
+        {/* In progress */}
+        <section className="border-t border-border px-6 py-24 md:px-12">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex items-center gap-4">
+              <StatusBadge status="in-progress" />
+              <span className="font-mono text-xs text-foreground/40">
+                {inProgress.length} capabilities
+              </span>
+            </div>
+            <h2 className="mt-4 max-w-2xl font-serif text-3xl italic text-foreground md:text-4xl">
+              In progress
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/60">
+              Code paths exist and are exercised internally. We're polishing the
+              developer-facing surfaces, running with design partners, and
+              hardening the edges before we promise general availability.
+            </p>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {inProgress.map((item) => (
+                <div
+                  key={item.name}
+                  className="border border-border p-8 transition-colors hover:border-accent/50"
+                >
+                  <h3 className="font-mono text-sm uppercase tracking-wider text-foreground">
+                    {item.name}
+                  </h3>
+                  <p className="mt-6 text-sm leading-relaxed text-foreground/70">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Honest closer */}
+        <section className="border-t border-border px-6 py-24 md:px-12">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="max-w-3xl font-serif text-2xl italic text-foreground md:text-3xl text-balance">
+              If a capability isn't on this page, we haven't built it.
+            </h2>
+            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-foreground/60">
+              Need something specific — a compliance attestation, dedicated
+              infrastructure, custom data residency, an SLA — and you don't see
+              it here? It's not built yet. Tell us what your security and
+              procurement teams require, and we'll be straight with you about
+              whether and when we can deliver it.
+            </p>
+          </div>
+        </section>
       </main>
 
       <Footer />
