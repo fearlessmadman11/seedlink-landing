@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="currentColor" role="img" aria-label="SeedLink">
+  <ellipse cx="32" cy="49" rx="11" ry="9"/>
+  <path d="M30 42 C30 30 31 25 32 21 C33 25 34 30 34 42 Z"/>
+  <path d="M32 21 C22 22 14 14 16 4 C26 7 32 13 32 21 Z"/>
+  <path d="M32 21 C42 22 50 14 48 4 C38 7 32 13 32 21 Z"/>
+</svg>

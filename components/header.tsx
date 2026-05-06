@@ -16,8 +16,21 @@ export function Header() {
   return (
     <header className="w-full px-6 py-6 md:px-12 md:py-8">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <Link href="/" className="font-serif text-xl italic text-foreground">
-          SeedLink
+        <Link href="/" className="flex items-center gap-2.5 text-foreground">
+          <svg
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            className="h-6 w-6"
+            role="img"
+            aria-label="SeedLink"
+          >
+            <ellipse cx="32" cy="49" rx="11" ry="9"/>
+            <path d="M30 42 C30 30 31 25 32 21 C33 25 34 30 34 42 Z"/>
+            <path d="M32 21 C22 22 14 14 16 4 C26 7 32 13 32 21 Z"/>
+            <path d="M32 21 C42 22 50 14 48 4 C38 7 32 13 32 21 Z"/>
+          </svg>
+          <span className="font-serif text-xl italic">SeedLink</span>
         </Link>
 
         <nav className="hidden items-center gap-10 md:flex">
