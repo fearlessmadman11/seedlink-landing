@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { PythonLogo, TypeScriptLogo } from "@/components/logos"
 
 export function ForDevelopers() {
@@ -12,27 +13,17 @@ export function ForDevelopers() {
         </h2>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {/* MCP */}
+          {/* MCP — the ornate key, unlocking scoped agent access */}
           <div className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50">
-            <svg
-              viewBox="0 0 64 64"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10 text-foreground"
-              role="img"
-              aria-label="MCP"
-            >
-              <path d="M22 14 L10 32 L22 50" />
-              <path d="M42 14 L54 32 L42 50" />
-              <ellipse cx="32" cy="40" rx="5" ry="4" fill="currentColor" />
-              <line x1="32" y1="36" x2="32" y2="26" />
-              <path d="M32 26 Q 27 24 25 20" fill="currentColor" />
-              <path d="M32 26 Q 37 24 39 20" fill="currentColor" />
-            </svg>
+            <div className="flex h-40 items-center justify-center">
+              <Image
+                src="/illustrations/engraved/mcp.png"
+                alt="MCP — ornate key"
+                width={400}
+                height={400}
+                className="h-full w-auto object-contain"
+              />
+            </div>
             <p className="mt-6 font-mono text-xs uppercase tracking-wider text-foreground/50">
               MCP
             </p>
@@ -46,27 +37,17 @@ export function ForDevelopers() {
             </p>
           </div>
 
-          {/* Sandbox */}
+          {/* Sandbox — the open botanical book, a reference catalog of fixtures */}
           <div className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50">
-            <svg
-              viewBox="0 0 64 64"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10 text-foreground"
-              role="img"
-              aria-label="Sandbox"
-            >
-              <path d="M26 10 L26 24 L14 50 Q 14 56 22 56 L42 56 Q 50 56 50 50 L38 24 L38 10" />
-              <line x1="24" y1="10" x2="40" y2="10" />
-              <line x1="20" y1="42" x2="44" y2="42" />
-              <circle cx="28" cy="48" r="1.5" fill="currentColor" />
-              <circle cx="36" cy="50" r="1.2" fill="currentColor" />
-              <circle cx="32" cy="52" r="1" fill="currentColor" />
-            </svg>
+            <div className="flex h-40 items-center justify-center">
+              <Image
+                src="/illustrations/engraved/item.png"
+                alt="Sandbox — open botanical reference book"
+                width={400}
+                height={320}
+                className="h-full w-auto object-contain"
+              />
+            </div>
             <p className="mt-6 font-mono text-xs uppercase tracking-wider text-foreground/50">
               Sandbox
             </p>
@@ -80,24 +61,17 @@ export function ForDevelopers() {
             </p>
           </div>
 
-          {/* SDKs — credential-collection component */}
+          {/* Connect SDK — two grafted stems, the connection metaphor */}
           <div className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50">
-            <svg
-              viewBox="0 0 64 64"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10 text-foreground"
-              role="img"
-              aria-label="Connect"
-            >
-              <path d="M14 14 Q 14 32 32 32 Q 50 32 50 50" />
-              <path d="M50 14 Q 50 32 32 32 Q 14 32 14 50" />
-              <circle cx="32" cy="32" r="3" fill="currentColor" />
-            </svg>
+            <div className="flex h-40 items-center justify-center">
+              <Image
+                src="/illustrations/engraved/connection.png"
+                alt="Connect SDK — two grafted cannabis stems"
+                width={400}
+                height={650}
+                className="h-full w-auto object-contain"
+              />
+            </div>
             <p className="mt-6 font-mono text-xs uppercase tracking-wider text-foreground/50">
               SDKs
             </p>
