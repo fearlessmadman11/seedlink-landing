@@ -5,17 +5,20 @@ export function Footer() {
   return (
     <footer className="border-t border-border px-6 pt-24 pb-12 md:px-12">
       <div className="mx-auto max-w-7xl">
-        <div className="flex justify-center pb-12 border-b border-border">
+        <div className="flex flex-col items-center pb-16 text-center">
           <Image
             src="/illustrations/emblem.png"
             alt="SeedLink emblem"
             width={520}
             height={520}
-            className="h-32 w-32 md:h-40 md:w-40"
+            className="h-24 w-24 opacity-90"
           />
+          <p className="mt-6 max-w-md font-serif text-base italic text-foreground/60">
+            Build once. Integrate everywhere.
+          </p>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+        <div className="flex flex-col items-start justify-between gap-8 border-t border-border pt-10 md:flex-row md:items-center">
           <Link href="/" className="flex items-center gap-2.5 text-foreground">
             <svg
               viewBox="0 0 64 64"

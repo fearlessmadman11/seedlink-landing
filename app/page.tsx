@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
+import { Narrative } from "@/components/narrative"
 import { BuildOnce } from "@/components/build-once"
 import { ForDevelopers } from "@/components/for-developers"
 import { HowItWorksSection } from "@/components/how-it-works-section"
@@ -11,6 +12,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Narrative />
         <BuildOnce />
         <ForDevelopers />
         <HowItWorksSection />
