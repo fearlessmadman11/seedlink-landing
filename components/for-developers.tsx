@@ -1,23 +1,4 @@
-const items = [
-  {
-    label: "MCP",
-    title: "MCP server endpoint",
-    description:
-      "Hook AI agents directly into seed-to-sale data with a Model Context Protocol endpoint. Tool calls, scoped credentials, and audit logs out of the box.",
-  },
-  {
-    label: "Sandbox",
-    title: "Sandbox environment",
-    description:
-      "Build and test against a full sandbox with realistic state-system fixtures. Identical schema to production — no surprises at go-live.",
-  },
-  {
-    label: "SDKs",
-    title: "Typed SDKs",
-    description:
-      "First-class SDKs in TypeScript and Python. Strongly typed, ergonomic, and generated from the same OpenAPI spec that powers the docs.",
-  },
-]
+import { PythonLogo, TypeScriptLogo } from "@/components/logos"
 
 export function ForDevelopers() {
   return (
@@ -31,22 +12,54 @@ export function ForDevelopers() {
         </h2>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {items.map((item) => (
-            <div
-              key={item.title}
-              className="border border-border p-8 transition-colors hover:border-accent/50"
-            >
-              <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-                {item.label}
-              </p>
-              <h3 className="mt-4 font-mono text-base text-foreground">
-                {item.title}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-foreground/70">
-                {item.description}
-              </p>
+          {/* MCP */}
+          <div className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50">
+            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+              MCP
+            </p>
+            <h3 className="mt-4 font-mono text-base text-foreground">
+              MCP server endpoint
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-foreground/70">
+              Hook AI agents directly into seed-to-sale data with a Model Context
+              Protocol endpoint. Tool calls, scoped credentials, and audit logs
+              out of the box.
+            </p>
+          </div>
+
+          {/* Sandbox */}
+          <div className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50">
+            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+              Sandbox
+            </p>
+            <h3 className="mt-4 font-mono text-base text-foreground">
+              Sandbox environment
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-foreground/70">
+              Build and test against a full sandbox with realistic state-system
+              fixtures. Identical schema to production — no surprises at
+              go-live.
+            </p>
+          </div>
+
+          {/* SDKs — credential-collection component */}
+          <div className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50">
+            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+              SDKs
+            </p>
+            <h3 className="mt-4 font-mono text-base text-foreground">
+              Connect SDK
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-foreground/70">
+              Pre-built component for collecting sensitive credentials and
+              authenticating users across Metrc, BioTrack, and every system we
+              support — drop it in and go.
+            </p>
+            <div className="mt-6 flex items-center gap-5 text-foreground/70">
+              <TypeScriptLogo className="h-6 w-6" />
+              <PythonLogo className="h-6 w-6" />
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,12 +1,16 @@
+import { BioTrackLogo, MetrcLogo } from "@/components/logos"
+
 const integrations = [
   {
     name: "Metrc",
+    logo: MetrcLogo,
     states: "20+ states",
     description:
       "Full Metrc API coverage — packages, plants, transfers, harvests, and reports across every Metrc state.",
   },
   {
     name: "BioTrack",
+    logo: BioTrackLogo,
     states: "WA, IL, ND, NM, NY",
     description:
       "Native BioTrack support — credential linking, inventory, manifests, and reporting normalized to the same data model.",
@@ -27,24 +31,25 @@ export function BuildOnce() {
         </p>
 
         <div className="mt-16 grid gap-6 md:grid-cols-2">
-          {integrations.map((integration) => (
-            <div
-              key={integration.name}
-              className="border border-border p-8 transition-colors hover:border-accent/50"
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 className="font-serif text-2xl italic text-foreground">
-                  {integration.name}
-                </h3>
-                <span className="font-mono text-xs uppercase tracking-wider text-accent">
-                  {integration.states}
-                </span>
+          {integrations.map((integration) => {
+            const Logo = integration.logo
+            return (
+              <div
+                key={integration.name}
+                className="flex flex-col border border-border p-8 transition-colors hover:border-accent/50"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <Logo className="h-8 w-auto text-foreground" />
+                  <span className="font-mono text-xs uppercase tracking-wider text-accent">
+                    {integration.states}
+                  </span>
+                </div>
+                <p className="mt-8 text-sm leading-relaxed text-foreground/70">
+                  {integration.description}
+                </p>
               </div>
-              <p className="mt-6 text-sm leading-relaxed text-foreground/70">
-                {integration.description}
-              </p>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
