@@ -79,8 +79,8 @@ export function ConnectDemo() {
 
   return (
     <div className="space-y-6">
-      {/* Controls strip */}
-      <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+      {/* Controls strip — centered above the phone */}
+      <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
         {/* Theme */}
         <div className="flex items-center gap-2">
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
