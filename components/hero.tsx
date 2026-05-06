@@ -24,7 +24,7 @@ export function Hero() {
         </h1>
 
         <p className="mt-8 max-w-xl font-mono text-base leading-relaxed text-foreground/80 md:text-lg">
-          Integrate with multiple seed-to-sale platforms.
+          Integrate with multiple state compliance providers.
         </p>
       </div>
     </section>
