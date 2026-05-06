@@ -43,19 +43,21 @@ const SeedlinkMark = ({ size = 11 }: { size?: number }) => (
   </svg>
 )
 
-/** Maps the active step onto the 3-step list shown in the left pane. */
-function progressOf(step: Step): { active: 1 | 2 | 3; done: boolean } {
+const Powered = () => (
+  <span className="cdemo-powered">
+    <SeedlinkMark />
+    Powered by SeedLink
+  </span>
+)
+
+function progressOf(step: Step): number {
   switch (step) {
     case "provider":
-      return { active: 1, done: false }
+      return 1
     case "state":
-      return { active: 2, done: false }
-    case "credentials":
-    case "validating":
-    case "error":
-      return { active: 3, done: false }
-    case "success":
-      return { active: 3, done: true }
+      return 2
+    default:
+      return 3
   }
 }
 
@@ -73,98 +75,96 @@ export function ConnectDemo() {
     "--cdemo-radius": "0px",
   } as CSSProperties
 
-  const { active, done } = progressOf(step)
+  const filled = progressOf(step)
 
   return (
     <div className="space-y-6">
       {/* Controls strip */}
-      <div className={`cdemo ${theme === "dark" ? "dark" : ""}`} style={cssVars}>
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-          {/* Theme */}
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
-              Theme
-            </span>
-            <div className="flex gap-1">
-              {(["light", "dark"] as Theme[]).map((t) => (
-                <button
-                  key={t}
-                  type="button"
-                  onClick={() => setTheme(t)}
-                  className={`px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors ${
-                    theme === t
-                      ? "bg-foreground text-background"
-                      : "border border-border text-foreground/70 hover:text-foreground"
-                  }`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
+      <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+        {/* Theme */}
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
+            Theme
+          </span>
+          <div className="flex gap-1">
+            {(["light", "dark"] as Theme[]).map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setTheme(t)}
+                className={`px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] transition-colors ${
+                  theme === t
+                    ? "bg-foreground text-background"
+                    : "border border-border text-foreground/70 hover:text-foreground"
+                }`}
+              >
+                {t}
+              </button>
+            ))}
           </div>
+        </div>
 
-          {/* Colors */}
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
-              Color
-            </span>
-            <div className="flex gap-1.5">
-              {COLOR_PRESETS.map((c) => (
-                <button
-                  key={c.hex}
-                  type="button"
-                  onClick={() => setPrimary(c.hex)}
-                  title={c.label}
-                  aria-label={`Primary color: ${c.label}`}
-                  style={{ background: c.hex }}
-                  className={`h-6 w-6 border transition-transform hover:scale-110 ${
-                    primary === c.hex
-                      ? "border-foreground ring-2 ring-foreground/30"
-                      : "border-border"
-                  }`}
-                />
-              ))}
-            </div>
+        {/* Colors */}
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
+            Color
+          </span>
+          <div className="flex gap-1.5">
+            {COLOR_PRESETS.map((c) => (
+              <button
+                key={c.hex}
+                type="button"
+                onClick={() => setPrimary(c.hex)}
+                title={c.label}
+                aria-label={`Primary color: ${c.label}`}
+                style={{ background: c.hex }}
+                className={`h-6 w-6 border transition-transform hover:scale-110 ${
+                  primary === c.hex
+                    ? "border-foreground ring-2 ring-foreground/30"
+                    : "border-border"
+                }`}
+              />
+            ))}
           </div>
+        </div>
 
-          {/* Step nav */}
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
-              Step
-            </span>
-            <div className="flex flex-wrap gap-1">
-              {(
-                [
-                  ["provider", "1"],
-                  ["state", "2"],
-                  ["credentials", "3"],
-                  ["validating", "4"],
-                  ["success", "5"],
-                  ["error", "6"],
-                ] as [Step, string][]
-              ).map(([s, label]) => (
-                <button
-                  key={s}
-                  type="button"
-                  onClick={() => setStep(s)}
-                  className={`px-2.5 py-1.5 font-mono text-[11px] tracking-[0.05em] transition-colors ${
-                    step === s
-                      ? "bg-foreground text-background"
-                      : "border border-border text-foreground/60 hover:text-foreground"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+        {/* Step nav */}
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
+            Step
+          </span>
+          <div className="flex flex-wrap gap-1">
+            {(
+              [
+                ["provider", "1"],
+                ["state", "2"],
+                ["credentials", "3"],
+                ["validating", "4"],
+                ["success", "5"],
+                ["error", "6"],
+              ] as [Step, string][]
+            ).map(([s, label]) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setStep(s)}
+                className={`px-2.5 py-1.5 font-mono text-[11px] tracking-[0.05em] transition-colors ${
+                  step === s
+                    ? "bg-foreground text-background"
+                    : "border border-border text-foreground/60 hover:text-foreground"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* SDK iframe — the cream product surface */}
+      {/* SDK iframe — single column, mobile-app-shaped */}
       <div className={`cdemo ${theme === "dark" ? "dark" : ""}`} style={cssVars}>
         <div className="cdemo-iframe">
-          {/* Top header — customer brand + close */}
+          {/* Header */}
           <div className="cdemo-header">
             <div className="cdemo-customer">{customerName}</div>
             <div className="cdemo-close">
@@ -174,65 +174,36 @@ export function ConnectDemo() {
             </div>
           </div>
 
-          {/* Body: split into LEFT context pane + RIGHT active pane */}
-          <div className="cdemo-split">
-            <aside className="cdemo-left-pane">
-              <ul className="cdemo-step-list" aria-label="Connection progress">
-                <li className={active === 1 ? "active" : active > 1 ? "complete" : ""}>
-                  <span className="dot" /> 01 · Provider
-                </li>
-                <li className={active === 2 ? "active" : active > 2 ? "complete" : ""}>
-                  <span className="dot" /> 02 · State
-                </li>
-                <li className={active === 3 ? (done ? "complete" : "active") : ""}>
-                  <span className="dot" /> 03 · Authorize
-                </li>
-              </ul>
-
-              {step === "success" && (
-                <img
-                  className="cdemo-left-engraving"
-                  src="/illustrations/engraved/connection.png"
-                  alt=""
-                  aria-hidden="true"
-                />
-              )}
-
-              <div className="cdemo-left-footer">
-                <SeedlinkMark size={11} />
-                <span>Powered by SeedLink</span>
-              </div>
-            </aside>
-
-            <div className="cdemo-right-pane">
-              {step === "provider" && <ProviderStep onSelect={() => setStep("state")} />}
-              {step === "state" && (
-                <StateStep
-                  selected={selectedState}
-                  onSelect={setSelectedState}
-                  onBack={() => setStep("provider")}
-                  onContinue={() => setStep("credentials")}
-                />
-              )}
-              {step === "credentials" && (
-                <CredentialsStep
-                  selectedState={selectedState}
-                  customerName={customerName}
-                  onBack={() => setStep("state")}
-                  onConnect={() => setStep("validating")}
-                />
-              )}
-              {step === "validating" && <ValidatingStep selectedState={selectedState} />}
-              {step === "success" && <SuccessStep customerName={customerName} onDone={() => setStep("provider")} />}
-              {step === "error" && (
-                <ErrorStep onBack={() => setStep("state")} onRetry={() => setStep("validating")} />
-              )}
-            </div>
+          {/* Progress */}
+          <div className="cdemo-progress">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className={`cdemo-seg ${i <= filled ? "active" : ""}`} />
+            ))}
           </div>
+
+          {/* Body */}
+          <div className="cdemo-body">
+            {step === "provider" && <ProviderStep onSelect={() => setStep("state")} />}
+            {step === "state" && (
+              <StateStep
+                selected={selectedState}
+                onSelect={setSelectedState}
+              />
+            )}
+            {step === "credentials" && (
+              <CredentialsStep selectedState={selectedState} customerName={customerName} />
+            )}
+            {step === "validating" && <ValidatingStep selectedState={selectedState} />}
+            {step === "success" && <SuccessStep customerName={customerName} />}
+            {step === "error" && <ErrorStep />}
+          </div>
+
+          {/* Action bar */}
+          <ActionBar step={step} setStep={setStep} />
         </div>
       </div>
 
-      {/* Code snippet — full width below */}
+      {/* Code snippet */}
       <div className="space-y-3">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
           SDK init code
@@ -248,17 +219,77 @@ export function ConnectDemo() {
 }
 
 /* ───────────────────────────────────────────────
-   Step renderers — each renders its content into the right pane.
-   Action buttons use cdemo-right-actions (sticks to bottom via margin-top: auto).
+   Action bar — uniform footer with Powered by + buttons per step
+   ─────────────────────────────────────────────── */
+
+function ActionBar({ step, setStep }: { step: Step; setStep: (s: Step) => void }) {
+  if (step === "provider") {
+    // Provider-step has no buttons — clicking a tile advances
+    return (
+      <div className="cdemo-actions">
+        <Powered />
+      </div>
+    )
+  }
+  if (step === "state") {
+    return (
+      <div className="cdemo-actions">
+        <Powered />
+        <button className="cdemo-btn ghost" onClick={() => setStep("provider")}>Back</button>
+        <button className="cdemo-btn" onClick={() => setStep("credentials")}>Continue</button>
+      </div>
+    )
+  }
+  if (step === "credentials") {
+    return (
+      <div className="cdemo-actions">
+        <Powered />
+        <button className="cdemo-btn ghost" onClick={() => setStep("state")}>Back</button>
+        <button className="cdemo-btn" onClick={() => setStep("validating")}>Connect</button>
+      </div>
+    )
+  }
+  if (step === "validating") {
+    return (
+      <div className="cdemo-actions">
+        <Powered />
+      </div>
+    )
+  }
+  if (step === "success") {
+    return (
+      <div className="cdemo-actions">
+        <Powered />
+        <button className="cdemo-btn" onClick={() => setStep("provider")}>Done</button>
+      </div>
+    )
+  }
+  if (step === "error") {
+    return (
+      <div className="cdemo-actions">
+        <Powered />
+        <button className="cdemo-btn ghost" onClick={() => setStep("state")}>Back</button>
+        <button className="cdemo-btn" onClick={() => setStep("validating")}>Try again</button>
+      </div>
+    )
+  }
+  return null
+}
+
+/* ───────────────────────────────────────────────
+   Step body renderers (no action buttons — those live in ActionBar)
    ─────────────────────────────────────────────── */
 
 function ProviderStep({ onSelect }: { onSelect: () => void }) {
   return (
     <>
-      <div className="cdemo-eyebrow">Connect your compliance system</div>
-      <h3 className="cdemo-title">Pick your seed-to-sale provider</h3>
-      <p className="cdemo-lede">We'll collect your credentials securely and verify the connection.</p>
-      <div className="mt-7 flex flex-col gap-2.5">
+      <div className="cdemo-eyebrow">Step 1 of 3</div>
+      <h3 className="cdemo-title">Connect your compliance system</h3>
+      <p className="cdemo-lede">
+        Pick the seed-to-sale system your facility uses. We'll collect your credentials securely
+        and verify the connection.
+      </p>
+      <div className="mt-6 flex flex-col gap-2">
         <button type="button" className="cdemo-tile" onClick={onSelect}>
           <div className="flex h-7 w-14 flex-shrink-0 items-center" style={{ color: "var(--cdemo-ink)" }}>
             <svg viewBox="0 0 160 48" fill="currentColor">
@@ -276,7 +307,7 @@ function ProviderStep({ onSelect }: { onSelect: () => void }) {
           </div>
           <div className="flex-1 min-w-0">
             <div className="cdemo-tile-name">Metrc</div>
-            <div className="cdemo-tile-desc">9 states · CA, CO, MA, MD, MI, MO, NV, OK, OR</div>
+            <div className="cdemo-tile-desc">9 states</div>
           </div>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: "var(--cdemo-ink-muted)" }}>
             <path d="M3 7 H 11 M 7 3 L 11 7 L 7 11" />
@@ -296,7 +327,7 @@ function ProviderStep({ onSelect }: { onSelect: () => void }) {
           <div className="flex-1 min-w-0">
             <div className="cdemo-tile-name">BioTrack</div>
             <div className="font-mono text-[9px] uppercase tracking-[0.15em] mt-1" style={{ color: "var(--cdemo-ink-muted)" }}>
-              Coming soon · IL, NM, HI, NH
+              Coming soon
             </div>
           </div>
         </div>
@@ -308,19 +339,15 @@ function ProviderStep({ onSelect }: { onSelect: () => void }) {
 function StateStep({
   selected,
   onSelect,
-  onBack,
-  onContinue,
 }: {
   selected: string
   onSelect: (s: string) => void
-  onBack: () => void
-  onContinue: () => void
 }) {
   return (
     <>
-      <div className="cdemo-eyebrow">Metrc · State</div>
-      <h3 className="cdemo-title">Which state do you operate in?</h3>
-      <p className="cdemo-lede">Metrc credentials are state-specific. Pick the state where your facility holds its license.</p>
+      <div className="cdemo-eyebrow">Step 2 of 3 · Metrc</div>
+      <h3 className="cdemo-title">Which state?</h3>
+      <p className="cdemo-lede">Metrc credentials are state-specific.</p>
       <div className="cdemo-state-grid">
         {STATES.map((s) => (
           <button
@@ -333,14 +360,6 @@ function StateStep({
           </button>
         ))}
       </div>
-      <div className="cdemo-right-actions">
-        <button type="button" className="cdemo-btn ghost" onClick={onBack}>
-          Back
-        </button>
-        <button type="button" className="cdemo-btn" onClick={onContinue}>
-          Continue
-        </button>
-      </div>
     </>
   )
 }
@@ -348,28 +367,23 @@ function StateStep({
 function CredentialsStep({
   selectedState,
   customerName,
-  onBack,
-  onConnect,
 }: {
   selectedState: string
   customerName: string
-  onBack: () => void
-  onConnect: () => void
 }) {
   return (
     <>
-      <div className="cdemo-eyebrow">Metrc · {selectedState} · Authorize</div>
-      <h3 className="cdemo-title">Enter your Metrc credentials</h3>
+      <div className="cdemo-eyebrow">Step 3 of 3 · Metrc · {selectedState}</div>
+      <h3 className="cdemo-title">Enter your Metrc API key</h3>
       <p className="cdemo-lede">
-        Your User API Key is issued by your Metrc state administrator and lives in your Metrc account
-        profile.
+        Issued by your Metrc state administrator. Lives in your Metrc account profile.
       </p>
       <div className="cdemo-form">
         <div className="cdemo-field">
           <label>User API Key</label>
           <input type="password" placeholder="Paste your User API Key" autoComplete="off" />
           <div className="cdemo-field-hint">
-            Find this under Account → Identification → User API Key in your Metrc dashboard.
+            Account → Identification → User API Key in your Metrc dashboard.
           </div>
         </div>
         <div className="cdemo-security">
@@ -377,18 +391,9 @@ function CredentialsStep({
             <path d="M3 6 V 4 a 4 4 0 0 1 8 0 V 6 M 2 6 H 12 V 12 H 2 Z" />
           </svg>
           <div className="cdemo-security-text">
-            Your key is encrypted with AES-256-GCM and stored in our credential vault.{" "}
-            <strong>{customerName}</strong> never sees it directly.
+            Encrypted with AES-256-GCM. <strong>{customerName}</strong> never sees it directly.
           </div>
         </div>
-      </div>
-      <div className="cdemo-right-actions">
-        <button type="button" className="cdemo-btn ghost" onClick={onBack}>
-          Back
-        </button>
-        <button type="button" className="cdemo-btn" onClick={onConnect}>
-          Connect
-        </button>
       </div>
     </>
   )
@@ -408,55 +413,52 @@ function ValidatingStep({ selectedState }: { selectedState: string }) {
         className="max-w-[280px] text-center text-[13px] leading-relaxed"
         style={{ color: "var(--cdemo-ink-muted)" }}
       >
-        Verifying your User API Key. Metrc usually responds in under 5 seconds.
+        Metrc usually responds in under 5 seconds.
       </div>
     </div>
   )
 }
 
-function SuccessStep({ customerName, onDone }: { customerName: string; onDone: () => void }) {
+function SuccessStep({ customerName }: { customerName: string }) {
   return (
-    <>
-      <div className="flex flex-1 flex-col items-center justify-center gap-3 py-6 text-center">
-        <h3 className="cdemo-title text-center">You're connected.</h3>
-        <p
-          className="max-w-[320px] text-[13px] leading-relaxed"
-          style={{ color: "var(--cdemo-ink-soft)" }}
-        >
-          <strong>{customerName}</strong> can now read your Metrc data on your behalf — packages,
-          plants, transfers, and more.
-        </p>
-        <div className="cdemo-conn-id">conn_mrc_9f8a7b6c</div>
-        <p
-          className="max-w-[320px] text-[13px] leading-relaxed"
-          style={{ color: "var(--cdemo-ink-soft)" }}
-        >
-          2 facilities found · Active
-        </p>
-      </div>
-      <div className="cdemo-right-actions">
-        <button type="button" className="cdemo-btn" onClick={onDone}>
-          Done
-        </button>
-      </div>
-    </>
+    <div className="flex flex-1 flex-col items-center justify-center gap-3 py-4 text-center">
+      <img
+        src="/illustrations/engraved/connection.png"
+        alt=""
+        aria-hidden="true"
+        className="mb-1 h-20 w-20 cdemo-success-engraving"
+      />
+      <h3 className="cdemo-title text-center">You're connected.</h3>
+      <p
+        className="max-w-[300px] text-[13px] leading-relaxed"
+        style={{ color: "var(--cdemo-ink-soft)" }}
+      >
+        <strong>{customerName}</strong> can now read your Metrc data.
+      </p>
+      <div className="cdemo-conn-id">conn_mrc_9f8a7b6c</div>
+      <p
+        className="text-[12px]"
+        style={{ color: "var(--cdemo-ink-muted)" }}
+      >
+        2 facilities · Active
+      </p>
+    </div>
   )
 }
 
-function ErrorStep({ onBack, onRetry }: { onBack: () => void; onRetry: () => void }) {
+function ErrorStep() {
   return (
     <>
-      <div className="cdemo-eyebrow">Metrc · California · Authorize</div>
+      <div className="cdemo-eyebrow">Step 3 of 3 · Metrc · California</div>
       <h3 className="cdemo-title">We couldn't validate that key</h3>
       <p className="cdemo-lede">
-        Metrc rejected the credentials. Common causes: an expired key, a key for the wrong state, or
-        a copy-paste with an extra character.
+        Metrc rejected the credentials. Check the key and try again.
       </p>
       <div className="cdemo-error-box">
-        <div className="cdemo-error-label">Error · invalid_credentials</div>
+        <div className="cdemo-error-label">invalid_credentials</div>
         <div className="cdemo-error-text">
           Metrc returned 401 Unauthorized. Verify the User API Key in your Metrc Account →
-          Identification page and re-enter it.
+          Identification page.
         </div>
       </div>
       <div className="cdemo-form">
@@ -464,14 +466,6 @@ function ErrorStep({ onBack, onRetry }: { onBack: () => void; onRetry: () => voi
           <label>User API Key</label>
           <input type="password" placeholder="Paste your User API Key" autoComplete="off" />
         </div>
-      </div>
-      <div className="cdemo-right-actions">
-        <button type="button" className="cdemo-btn ghost" onClick={onBack}>
-          Back
-        </button>
-        <button type="button" className="cdemo-btn" onClick={onRetry}>
-          Try again
-        </button>
       </div>
     </>
   )
