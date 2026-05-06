@@ -1,88 +1,22 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-const plans = [
-  {
-    name: "Build",
-    price: "$0",
-    period: "/mo",
-    tagline: "Free forever",
-    environment: "Sandbox environment only",
-    requests: "10,000 requests/month",
-    accounts: "1 connected account",
-    highlighted: false,
-    features: {
-      connectUi: true,
-      commonDataModel: true,
-      webhooks: false,
-      bulkEndpoints: false,
-      sso: false,
-      sla: false,
-    },
-  },
-  {
-    name: "Launch",
-    price: "$299",
-    period: "/mo",
-    tagline: "Go live with confidence",
-    environment: "Sandbox + Production",
-    requests: "250,000 requests/month",
-    accounts: "25 connected accounts",
-    highlighted: true,
-    features: {
-      connectUi: true,
-      commonDataModel: true,
-      webhooks: true,
-      bulkEndpoints: false,
-      sso: false,
-      sla: false,
-    },
-  },
-  {
-    name: "Growth",
-    price: "$999",
-    period: "/mo",
-    tagline: "Scale with demand",
-    environment: "Sandbox + Production",
-    requests: "2,000,000 requests/month",
-    accounts: "250 connected accounts",
-    highlighted: false,
-    features: {
-      connectUi: true,
-      commonDataModel: true,
-      webhooks: true,
-      bulkEndpoints: true,
-      sso: false,
-      sla: true,
-    },
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
-    tagline: "Tailored for your operation",
-    environment: "Sandbox + Production",
-    requests: "Unlimited requests",
-    accounts: "Unlimited connected accounts",
-    highlighted: false,
-    features: {
-      connectUi: true,
-      commonDataModel: true,
-      webhooks: true,
-      bulkEndpoints: true,
-      sso: true,
-      sla: true,
-    },
-  },
+const platformIncludes = [
+  "100,000 API requests/month included",
+  "$0.005 per request beyond included volume",
+  "Sandbox + production environments",
+  "Unified API across Metrc and BioTrack",
+  "Connect SDK, Webhooks, MCP endpoint",
+  "Common Data Model & state-system normalization",
+  "Standard support",
 ]
 
-const featureLabels: { key: keyof (typeof plans)[0]["features"]; label: string }[] = [
-  { key: "connectUi", label: "Connect UI SDK" },
-  { key: "commonDataModel", label: "Common Data Model" },
-  { key: "webhooks", label: "Webhooks" },
-  { key: "bulkEndpoints", label: "Bulk Endpoints" },
-  { key: "sla", label: "SLA" },
-  { key: "sso", label: "SSO" },
+const enterpriseIncludes = [
+  "Volume pricing for high-request workloads",
+  "SSO / SAML, audit logging",
+  "Dedicated environments and isolated infrastructure",
+  "Custom SLAs and dedicated support",
+  "Custom contracts and procurement",
 ]
 
 function CheckIcon() {
@@ -100,21 +34,6 @@ function CheckIcon() {
   )
 }
 
-function XIcon() {
-  return (
-    <svg
-      className="h-4 w-4 shrink-0 text-foreground/30"
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="square"
-    >
-      <path d="M4 4L12 12M12 4L4 12" />
-    </svg>
-  )
-}
-
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -125,95 +44,129 @@ export default function PricingPage() {
         <section className="px-6 pb-20 pt-24 md:px-12 md:pb-28 md:pt-32">
           <div className="mx-auto max-w-7xl">
             <h1 className="max-w-4xl font-serif text-4xl italic leading-tight text-foreground md:text-5xl lg:text-6xl text-balance">
-              Pricing that scales from prototype to production
+              Flat platform fee. Pay only for what you use.
             </h1>
             <p className="mt-6 max-w-2xl font-mono text-base leading-relaxed text-foreground/70 md:text-lg">
-              Start for free in sandbox. Pay only when you go live.
+              One plan, predictable overage pricing. No tiers, no per-seat
+              surcharges, no surprises.
             </p>
           </div>
         </section>
 
         {/* Plan Cards */}
         <section className="px-6 pb-32 md:px-12">
-          <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {plans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`flex flex-col border p-6 ${
-                  plan.highlighted
-                    ? "border-accent"
-                    : "border-border"
-                }`}
-              >
-                {/* Plan header */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-mono text-sm uppercase tracking-wider text-foreground/60">
-                      {plan.name}
-                    </h3>
-                    {plan.highlighted && (
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-accent">
-                        Recommended
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-4 flex items-baseline gap-1">
-                    <span className="font-mono text-3xl text-foreground">
-                      {plan.price}
-                    </span>
-                    {plan.period && (
-                      <span className="font-mono text-sm text-foreground/50">
-                        {plan.period}
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-2 text-sm text-foreground/60">
-                    {plan.tagline}
-                  </p>
-                </div>
-
-                {/* Plan details */}
-                <div className="mb-6 space-y-3 border-t border-border pt-6">
-                  <div className="flex items-start gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" />
-                    <span className="font-mono text-sm text-foreground/70">
-                      {plan.environment}
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" />
-                    <span className="font-mono text-sm text-foreground/70">
-                      {plan.requests}
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent" />
-                    <span className="font-mono text-sm text-foreground/70">
-                      {plan.accounts}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Feature checklist */}
-                <div className="mb-8 flex-1 space-y-3 border-t border-border pt-6">
-                  {featureLabels.map(({ key, label }) => (
-                    <div key={key} className="flex items-center gap-3">
-                      {plan.features[key] ? <CheckIcon /> : <XIcon />}
-                      <span
-                        className={`text-sm ${
-                          plan.features[key]
-                            ? "text-foreground/70"
-                            : "text-foreground/30"
-                        }`}
-                      >
-                        {label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
+          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
+            {/* Platform */}
+            <div className="flex flex-col border border-accent p-8">
+              <div className="flex items-center gap-3">
+                <h2 className="font-mono text-sm uppercase tracking-wider text-foreground/60">
+                  Platform
+                </h2>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-accent">
+                  Recommended
+                </span>
               </div>
-            ))}
+
+              <div className="mt-6 flex items-baseline gap-2">
+                <span className="font-mono text-4xl text-foreground">$299</span>
+                <span className="font-mono text-sm text-foreground/50">
+                  /month
+                </span>
+              </div>
+              <p className="mt-3 font-mono text-sm text-foreground/70">
+                + <span className="text-foreground">$0.005</span> per API
+                request beyond 100K/mo
+              </p>
+
+              <p className="mt-6 text-sm text-foreground/60">
+                Everything you need to ship a production seed-to-sale
+                integration.
+              </p>
+
+              <ul className="mt-8 space-y-3 border-t border-border pt-8">
+                {platformIncludes.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckIcon />
+                    <span className="text-sm text-foreground/70">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Enterprise */}
+            <div className="flex flex-col border border-border p-8">
+              <h2 className="font-mono text-sm uppercase tracking-wider text-foreground/60">
+                Enterprise
+              </h2>
+
+              <div className="mt-6 flex items-baseline gap-2">
+                <span className="font-mono text-4xl text-foreground">
+                  Custom
+                </span>
+              </div>
+              <p className="mt-3 font-mono text-sm text-foreground/50">
+                Tailored for your operation
+              </p>
+
+              <p className="mt-6 text-sm text-foreground/60">
+                For high-volume customers, regulated teams, and operators that
+                need dedicated infrastructure.
+              </p>
+
+              <ul className="mt-8 space-y-3 border-t border-border pt-8">
+                {enterpriseIncludes.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckIcon />
+                    <span className="text-sm text-foreground/70">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Math callout */}
+        <section className="border-t border-border px-6 py-24 md:px-12">
+          <div className="mx-auto max-w-7xl">
+            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+              How the math works
+            </p>
+            <h2 className="mt-4 max-w-2xl font-serif text-3xl italic text-foreground md:text-4xl">
+              Predictable, even as you scale
+            </h2>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  volume: "50K requests/mo",
+                  cost: "$299",
+                  note: "Well under the included allowance — flat platform fee.",
+                },
+                {
+                  volume: "250K requests/mo",
+                  cost: "$1,049",
+                  note: "$299 platform + 150K × $0.005 overage.",
+                },
+                {
+                  volume: "1M requests/mo",
+                  cost: "$4,799",
+                  note: "$299 platform + 900K × $0.005 overage. Talk to us before you hit this — Enterprise volume pricing applies.",
+                },
+              ].map((row) => (
+                <div
+                  key={row.volume}
+                  className="border border-border p-8 transition-colors hover:border-accent/50"
+                >
+                  <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+                    {row.volume}
+                  </p>
+                  <p className="mt-4 font-mono text-3xl text-foreground">
+                    {row.cost}
+                  </p>
+                  <p className="mt-4 text-sm text-foreground/60">{row.note}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
