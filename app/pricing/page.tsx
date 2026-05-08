@@ -1,24 +1,37 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-const developerIncludes = [
-  "100,000 API requests/month included",
-  "Sandbox access (free, always)",
-  "Live account access in supported states",
-  "Scheduled syncs (data refreshed every 15 minutes)",
+const developerHighlights = [
+  "100,000 API requests included",
+  "Live access in supported states",
+  "Scheduled syncs (every 15 min)",
   "Connect SDK and Webhooks",
-  "Common Data Model & state-system normalization",
-  "Standard support",
 ]
 
-const enterpriseIncludes = [
-  "Everything in the Developer Plan",
+const enterpriseHighlights = [
+  "Everything in Developer",
   "SSO / SAML and audit logging",
-  "Real-time data delivery via webhooks (where upstream supports push)",
-  "Volume pricing for high-request workloads",
-  "Dedicated environments and isolated infrastructure",
-  "Custom SLAs and dedicated support",
-  "Custom contracts and procurement",
+  "Real-time data delivery",
+  "Dedicated support and SLAs",
+]
+
+type ComparisonValue = boolean | string
+
+const comparisonRows: { feature: string; dev: ComparisonValue; ent: ComparisonValue }[] = [
+  { feature: "Price", dev: "$299/mo", ent: "Custom" },
+  { feature: "API requests included", dev: "100,000/mo", ent: "Volume pricing" },
+  { feature: "Overage rate", dev: "$0.005 / request", ent: "Negotiated" },
+  { feature: "Sandbox", dev: true, ent: true },
+  { feature: "Live providers", dev: true, ent: true },
+  { feature: "Connect SDK", dev: true, ent: true },
+  { feature: "Webhooks", dev: true, ent: true },
+  { feature: "Data delivery", dev: "Scheduled (15 min)", ent: "Real-time where available" },
+  { feature: "SSO / SAML", dev: false, ent: true },
+  { feature: "Audit logging", dev: false, ent: true },
+  { feature: "Dedicated infrastructure", dev: false, ent: true },
+  { feature: "Custom SLAs", dev: false, ent: true },
+  { feature: "Support", dev: "Standard", ent: "Dedicated" },
+  { feature: "Contract", dev: "Self-serve", ent: "Custom" },
 ]
 
 function CheckIcon() {
@@ -34,6 +47,27 @@ function CheckIcon() {
       <path d="M3 8.5L6.5 12L13 4" />
     </svg>
   )
+}
+
+function MinusIcon() {
+  return (
+    <svg
+      className="h-4 w-4 shrink-0 text-foreground/30"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="square"
+    >
+      <path d="M4 8h8" />
+    </svg>
+  )
+}
+
+function ComparisonCell({ value }: { value: ComparisonValue }) {
+  if (value === true) return <CheckIcon />
+  if (value === false) return <MinusIcon />
+  return <span className="text-sm text-foreground/70">{value}</span>
 }
 
 export default function PricingPage() {
@@ -56,7 +90,7 @@ export default function PricingPage() {
         </section>
 
         {/* Plan Cards */}
-        <section className="px-6 pb-32 md:px-12">
+        <section className="px-6 pb-24 md:px-12 md:pb-28">
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
             {/* Developer */}
             <div className="flex flex-col border border-border p-8">
@@ -74,9 +108,6 @@ export default function PricingPage() {
                 + <span className="text-foreground">$0.005</span> per API
                 request beyond 100K/mo
               </p>
-              <p className="mt-2 font-mono text-xs text-accent">
-                Sandbox is always free — only pay when you ship to production.
-              </p>
 
               <p className="mt-6 text-sm text-foreground/60">
                 For individual developers, startups, and teams shipping their
@@ -84,7 +115,7 @@ export default function PricingPage() {
               </p>
 
               <ul className="mt-8 space-y-3 border-t border-border pt-8">
-                {developerIncludes.map((item) => (
+                {developerHighlights.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckIcon />
                     <span className="text-sm text-foreground/70">{item}</span>
@@ -114,13 +145,61 @@ export default function PricingPage() {
               </p>
 
               <ul className="mt-8 space-y-3 border-t border-border pt-8">
-                {enterpriseIncludes.map((item) => (
+                {enterpriseHighlights.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckIcon />
                     <span className="text-sm text-foreground/70">{item}</span>
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Comparison table */}
+        <section className="border-t border-border px-6 py-24 md:px-12">
+          <div className="mx-auto max-w-5xl">
+            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+              Plan comparison
+            </p>
+            <h2 className="mt-4 font-serif text-3xl italic text-foreground md:text-4xl">
+              Every feature, side by side.
+            </h2>
+
+            <div className="mt-12 overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="py-4 pr-4 text-left font-mono text-xs uppercase tracking-wider text-foreground/50">
+                      Feature
+                    </th>
+                    <th className="py-4 pr-4 text-left font-mono text-xs uppercase tracking-wider text-foreground/50">
+                      Developer
+                    </th>
+                    <th className="py-4 text-left font-mono text-xs uppercase tracking-wider text-foreground/50">
+                      Enterprise
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row) => (
+                    <tr
+                      key={row.feature}
+                      className="border-b border-border/40"
+                    >
+                      <td className="py-4 pr-4 text-sm text-foreground/80">
+                        {row.feature}
+                      </td>
+                      <td className="py-4 pr-4">
+                        <ComparisonCell value={row.dev} />
+                      </td>
+                      <td className="py-4">
+                        <ComparisonCell value={row.ent} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
