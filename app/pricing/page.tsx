@@ -28,10 +28,8 @@ const comparisonRows: { feature: string; dev: ComparisonValue; ent: ComparisonVa
   { feature: "Data delivery", dev: "Scheduled (15 min)", ent: "Real-time where available" },
   { feature: "SSO / SAML", dev: false, ent: true },
   { feature: "Audit logging", dev: false, ent: true },
-  { feature: "Dedicated infrastructure", dev: false, ent: true },
   { feature: "Custom SLAs", dev: false, ent: true },
   { feature: "Support", dev: "Standard", ent: "Dedicated" },
-  { feature: "Contract", dev: "Self-serve", ent: "Custom" },
 ]
 
 function CheckIcon() {
@@ -141,7 +139,7 @@ export default function PricingPage() {
 
               <p className="mt-6 text-sm text-foreground/60">
                 For high-volume customers, regulated teams, and operators that
-                need SSO, real-time data, or dedicated infrastructure.
+                need SSO, real-time data, or a custom agreement.
               </p>
 
               <ul className="mt-8 space-y-3 border-t border-border pt-8">
