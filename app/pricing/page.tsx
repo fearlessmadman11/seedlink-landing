@@ -20,7 +20,7 @@ type ComparisonValue = boolean | string
 const comparisonRows: { feature: string; dev: ComparisonValue; ent: ComparisonValue }[] = [
   { feature: "Price", dev: "$299/mo", ent: "Custom" },
   { feature: "API requests included", dev: "100,000/mo", ent: "Volume pricing" },
-  { feature: "Overage rate", dev: "$0.005 / request", ent: "Negotiated" },
+  { feature: "Per API Request Price", dev: "$0.005 / request", ent: "Negotiated" },
   { feature: "Sandbox", dev: true, ent: true },
   { feature: "Live providers", dev: true, ent: true },
   { feature: "Connect SDK", dev: true, ent: true },
