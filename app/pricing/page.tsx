@@ -1,19 +1,20 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-const platformIncludes = [
-  "100,000 API requests/month included",
-  "$0.005 per request beyond included volume",
-  "Sandbox + production environments",
-  "Unified API across Metrc and BioTrack",
-  "Connect SDK, Webhooks, MCP endpoint",
+const developerIncludes = [
+  "Sandbox access (free, always)",
+  "Live account access in supported states",
+  "Scheduled syncs (data refreshed every 15 minutes)",
+  "Connect SDK and Webhooks",
   "Common Data Model & state-system normalization",
   "Standard support",
 ]
 
 const enterpriseIncludes = [
+  "Everything in the Developer Plan",
+  "SSO / SAML and audit logging",
+  "Real-time data delivery via webhooks (where upstream supports push)",
   "Volume pricing for high-request workloads",
-  "SSO / SAML, audit logging",
   "Dedicated environments and isolated infrastructure",
   "Custom SLAs and dedicated support",
   "Custom contracts and procurement",
@@ -44,11 +45,11 @@ export default function PricingPage() {
         <section className="px-6 pb-20 pt-24 md:px-12 md:pb-28 md:pt-32">
           <div className="mx-auto max-w-7xl">
             <h1 className="max-w-4xl font-serif text-4xl italic leading-tight text-foreground md:text-5xl lg:text-6xl text-balance">
-              Flat platform fee. Pay only for what you use.
+              Build for free. Pay when you scale.
             </h1>
             <p className="mt-6 max-w-2xl font-mono text-base leading-relaxed text-foreground/70 md:text-lg">
-              One plan, predictable overage pricing. Sandbox is free for every
-              developer — pay only when you go live.
+              SeedLink is in private beta. Sandbox is free for every developer.
+              The Developer Plan is free during beta.
             </p>
           </div>
         </section>
@@ -56,11 +57,11 @@ export default function PricingPage() {
         {/* Plan Cards */}
         <section className="px-6 pb-32 md:px-12">
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-            {/* Platform */}
+            {/* Developer */}
             <div className="flex flex-col border border-accent p-8">
               <div className="flex items-center gap-3">
                 <h2 className="font-mono text-sm uppercase tracking-wider text-foreground/60">
-                  Platform
+                  Developer
                 </h2>
                 <span className="font-mono text-[10px] uppercase tracking-widest text-accent">
                   Recommended
@@ -68,26 +69,22 @@ export default function PricingPage() {
               </div>
 
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-mono text-4xl text-foreground">$299</span>
+                <span className="font-mono text-4xl text-foreground">Free</span>
                 <span className="font-mono text-sm text-foreground/50">
-                  /month
+                  during beta
                 </span>
               </div>
               <p className="mt-3 font-mono text-sm text-foreground/70">
-                + <span className="text-foreground">$0.005</span> per API
-                request beyond 100K/mo
-              </p>
-              <p className="mt-2 font-mono text-xs text-accent">
-                Sandbox is always free — only pay when you ship to production.
+                Sandbox is always free. Live access in supported states.
               </p>
 
               <p className="mt-6 text-sm text-foreground/60">
-                Everything you need to ship a production seed-to-sale
-                integration.
+                For individual developers, startups, and teams shipping their
+                first integration.
               </p>
 
               <ul className="mt-8 space-y-3 border-t border-border pt-8">
-                {platformIncludes.map((item) => (
+                {developerIncludes.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <CheckIcon />
                     <span className="text-sm text-foreground/70">{item}</span>
@@ -113,7 +110,7 @@ export default function PricingPage() {
 
               <p className="mt-6 text-sm text-foreground/60">
                 For high-volume customers, regulated teams, and operators that
-                need dedicated infrastructure.
+                need SSO, real-time data, or dedicated infrastructure.
               </p>
 
               <ul className="mt-8 space-y-3 border-t border-border pt-8">
@@ -128,48 +125,22 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Math callout */}
+        {/* Real-time vs scheduled callout */}
         <section className="border-t border-border px-6 py-24 md:px-12">
           <div className="mx-auto max-w-7xl">
             <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-              How the math works
+              Scheduled vs real-time
             </p>
             <h2 className="mt-4 max-w-2xl font-serif text-3xl italic text-foreground md:text-4xl">
-              Predictable, even as you scale
+              Most compliance providers don't push.
             </h2>
-
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  volume: "50K requests/mo",
-                  cost: "$299",
-                  note: "Well under the included allowance — flat platform fee.",
-                },
-                {
-                  volume: "250K requests/mo",
-                  cost: "$1,049",
-                  note: "$299 platform + 150K × $0.005 overage.",
-                },
-                {
-                  volume: "1M requests/mo",
-                  cost: "$4,799",
-                  note: "$299 platform + 900K × $0.005 overage. Talk to us before you hit this — Enterprise volume pricing applies.",
-                },
-              ].map((row) => (
-                <div
-                  key={row.volume}
-                  className="border border-border p-8 transition-colors hover:border-accent/50"
-                >
-                  <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
-                    {row.volume}
-                  </p>
-                  <p className="mt-4 font-mono text-3xl text-foreground">
-                    {row.cost}
-                  </p>
-                  <p className="mt-4 text-sm text-foreground/60">{row.note}</p>
-                </div>
-              ))}
-            </div>
+            <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/70">
+              Cannabis state-tracking systems are queried on a schedule. The
+              Developer Plan polls each connected account on a fixed interval
+              and writes changes to your webhooks. The Enterprise Plan adds
+              direct push delivery in states where the upstream provider
+              supports it, or a faster polling interval where they don't.
+            </p>
           </div>
         </section>
       </main>
