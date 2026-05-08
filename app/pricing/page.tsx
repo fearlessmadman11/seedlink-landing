@@ -20,7 +20,7 @@ type ComparisonValue = boolean | string
 const comparisonRows: { feature: string; dev: ComparisonValue; ent: ComparisonValue }[] = [
   { feature: "Price", dev: "$299/mo", ent: "Custom" },
   { feature: "API requests included", dev: "100,000/mo", ent: "Volume pricing" },
-  { feature: "Per API Request Price", dev: "$0.005 / request", ent: "Negotiated" },
+  { feature: "Per API Request Price", dev: "$0.005 / request after 100K", ent: "Negotiated" },
   { feature: "Sandbox", dev: true, ent: true },
   { feature: "Live providers", dev: true, ent: true },
   { feature: "Connect SDK", dev: true, ent: true },
@@ -198,6 +198,57 @@ export default function PricingPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </section>
+
+        {/* How billing works */}
+        <section className="border-t border-border px-6 py-24 md:px-12">
+          <div className="mx-auto max-w-5xl">
+            <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+              How billing works
+            </p>
+            <h2 className="mt-4 max-w-3xl font-serif text-3xl italic text-foreground md:text-4xl">
+              Pay-as-you-go, with the first 100K included.
+            </h2>
+            <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/70">
+              The Developer Plan is a flat $299/month. That covers your first
+              100,000 API requests. Every request after that is billed at
+              $0.005, prorated to the nearest request. Sandbox traffic is
+              never metered.
+            </p>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  volume: "50K requests/mo",
+                  cost: "$299",
+                  note: "Well under the 100K allowance. Just the base fee.",
+                },
+                {
+                  volume: "250K requests/mo",
+                  cost: "$1,049",
+                  note: "$299 base + 150K × $0.005 overage.",
+                },
+                {
+                  volume: "1M requests/mo",
+                  cost: "$4,799",
+                  note: "$299 base + 900K × $0.005. At this volume, talk to us about Enterprise.",
+                },
+              ].map((row) => (
+                <div
+                  key={row.volume}
+                  className="border border-border p-8 transition-colors hover:border-accent/50"
+                >
+                  <p className="font-mono text-xs uppercase tracking-wider text-foreground/50">
+                    {row.volume}
+                  </p>
+                  <p className="mt-4 font-mono text-3xl text-foreground">
+                    {row.cost}
+                  </p>
+                  <p className="mt-4 text-sm text-foreground/60">{row.note}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
