@@ -18,7 +18,7 @@ const enterpriseHighlights = [
 type ComparisonValue = boolean | string
 
 const comparisonRows: { feature: string; dev: ComparisonValue; ent: ComparisonValue }[] = [
-  { feature: "Price", dev: "$299/mo", ent: "Custom" },
+  { feature: "Price", dev: "$499/mo", ent: "Custom" },
   { feature: "API requests included", dev: "100,000/mo", ent: "Volume pricing" },
   { feature: "Per API Request Price", dev: "$0.005 / request after 100K", ent: "Negotiated" },
   { feature: "Sandbox", dev: true, ent: true },
@@ -97,7 +97,7 @@ export default function PricingPage() {
               </h2>
 
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-mono text-4xl text-foreground">$299</span>
+                <span className="font-mono text-4xl text-foreground">$499</span>
                 <span className="font-mono text-sm text-foreground/50">
                   /month
                 </span>
@@ -212,7 +212,7 @@ export default function PricingPage() {
               Pay-as-you-go, with the first 100K included.
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/70">
-              The Developer Plan is a flat $299/month. That covers your first
+              The Developer Plan is a flat $499/month. That covers your first
               100,000 API requests. Every request after that is billed at
               $0.005, prorated to the nearest request. Sandbox traffic is
               never metered.
@@ -222,18 +222,18 @@ export default function PricingPage() {
               {[
                 {
                   volume: "50K requests/mo",
-                  cost: "$299",
+                  cost: "$499",
                   note: "Well under the 100K allowance. Just the base fee.",
                 },
                 {
                   volume: "250K requests/mo",
-                  cost: "$1,049",
-                  note: "$299 base + 150K × $0.005 overage.",
+                  cost: "$1,249",
+                  note: "$499 base + 150K × $0.005 overage.",
                 },
                 {
                   volume: "1M requests/mo",
-                  cost: "$4,799",
-                  note: "$299 base + 900K × $0.005. At this volume, talk to us about Enterprise.",
+                  cost: "$4,999",
+                  note: "$499 base + 900K × $0.005. At this volume, talk to us about Enterprise.",
                 },
               ].map((row) => (
                 <div
