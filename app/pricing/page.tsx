@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
 const developerIncludes = [
+  "100,000 API requests/month included",
   "Sandbox access (free, always)",
   "Live account access in supported states",
   "Scheduled syncs (data refreshed every 15 minutes)",
@@ -45,11 +46,11 @@ export default function PricingPage() {
         <section className="px-6 pb-20 pt-24 md:px-12 md:pb-28 md:pt-32">
           <div className="mx-auto max-w-7xl">
             <h1 className="max-w-4xl font-serif text-4xl italic leading-tight text-foreground md:text-5xl lg:text-6xl text-balance">
-              Build for free. Pay when you scale.
+              Pricing built for cannabis software.
             </h1>
             <p className="mt-6 max-w-2xl font-mono text-base leading-relaxed text-foreground/70 md:text-lg">
-              SeedLink is in private beta. Sandbox is free for every developer.
-              The Developer Plan is free during beta.
+              Two plans. Sandbox is always free. Pay only for live, production
+              integrations.
             </p>
           </div>
         </section>
@@ -58,24 +59,23 @@ export default function PricingPage() {
         <section className="px-6 pb-32 md:px-12">
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
             {/* Developer */}
-            <div className="flex flex-col border border-accent p-8">
-              <div className="flex items-center gap-3">
-                <h2 className="font-mono text-sm uppercase tracking-wider text-foreground/60">
-                  Developer
-                </h2>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-accent">
-                  Recommended
-                </span>
-              </div>
+            <div className="flex flex-col border border-border p-8">
+              <h2 className="font-mono text-sm uppercase tracking-wider text-foreground/60">
+                Developer
+              </h2>
 
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-mono text-4xl text-foreground">Free</span>
+                <span className="font-mono text-4xl text-foreground">$299</span>
                 <span className="font-mono text-sm text-foreground/50">
-                  during beta
+                  /month
                 </span>
               </div>
               <p className="mt-3 font-mono text-sm text-foreground/70">
-                Sandbox is always free. Live access in supported states.
+                + <span className="text-foreground">$0.005</span> per API
+                request beyond 100K/mo
+              </p>
+              <p className="mt-2 font-mono text-xs text-accent">
+                Sandbox is always free — only pay when you ship to production.
               </p>
 
               <p className="mt-6 text-sm text-foreground/60">
