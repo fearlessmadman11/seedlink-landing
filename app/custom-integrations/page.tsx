@@ -44,9 +44,14 @@ export default function CustomIntegrationsPage() {
             </div>
 
             <div className="mt-16 border-t border-border pt-8">
+              <p className="text-sm leading-relaxed text-foreground/55">
+                This is a custom service. Every engagement starts with
+                discovery and a contract. New work is prioritized against our
+                platform roadmap, so timing depends on fit and capacity.
+              </p>
               <a
                 href="mailto:hello@seedlink.dev?subject=Integration%20Inquiry"
-                className="font-mono text-sm text-accent transition-colors hover:text-foreground"
+                className="mt-8 inline-block font-mono text-sm text-accent transition-colors hover:text-foreground"
               >
                 hello@seedlink.dev →
               </a>
