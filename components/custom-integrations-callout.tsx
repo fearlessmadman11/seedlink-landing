@@ -13,10 +13,9 @@ export function CustomIntegrationsCallout() {
               Not on the platform? We'll build it.
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/70">
-              SeedLink is fundamentally a cannabis system integrations company.
-              The platform is what we've productized. For everything else, we
-              engage on a per-project basis with fixed scope, fixed price, and
-              full IP handoff.
+              SeedLink is a cannabis system integrations company. The platform
+              is what we've productized. For everything else, we engage on a
+              per-project basis.
             </p>
           </div>
           <Link
