@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 
 const navLinks = [
+  { href: "/custom-integrations", label: "Custom Integrations" },
   { href: "/pricing", label: "Pricing" },
   { href: "https://docs.seedlink.dev", label: "Docs" },
 ]
