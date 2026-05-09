@@ -10,19 +10,18 @@ export function CustomIntegrationsCallout() {
               Custom Integrations
             </p>
             <h2 className="mt-4 max-w-2xl font-serif text-3xl italic text-foreground md:text-4xl lg:text-5xl text-balance">
-              Not on the platform? We'll build it.
+              Don't see what you need?
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/70">
-              SeedLink is a cannabis system integrations company. The platform
-              is what we've productized. For everything else, we engage on a
-              per-project basis.
+              Tell us what you're building. We'll either add it to the
+              developer platform or build it custom for you.
             </p>
           </div>
           <Link
             href="/custom-integrations"
             className="inline-flex shrink-0 items-center gap-2 border border-border px-5 py-3 font-mono text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
           >
-            See custom work →
+            Talk to us →
           </Link>
         </div>
       </div>

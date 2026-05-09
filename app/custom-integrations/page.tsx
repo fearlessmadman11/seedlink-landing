@@ -1,14 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-const examples = [
-  "Custom state-system adapters",
-  "Reverse integrations into your ERP, accounting, or BI",
-  "Compliance reporting workflows",
-  "Data migration from legacy systems",
-  "White-labeled deployments",
-]
-
 export default function CustomIntegrationsPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -21,34 +13,39 @@ export default function CustomIntegrationsPage() {
               Custom Integrations
             </p>
             <h1 className="mt-6 font-serif text-4xl italic leading-tight text-foreground md:text-5xl lg:text-6xl text-balance">
-              Not on the platform? We'll build it.
+              Don't see what you need?
             </h1>
             <p className="mt-8 text-base leading-relaxed text-foreground/70 md:text-lg">
-              SeedLink is a cannabis system integrations company. The platform
-              is what we've productized. For everything else, we engage on a
-              per-project basis.
+              Tell us what you're building. We'll either add it to the developer
+              platform or build it custom for you.
             </p>
 
-            <ul className="mt-12 space-y-3 border-t border-border pt-8">
-              {examples.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-baseline gap-3 text-base text-foreground/80"
-                >
-                  <span className="font-mono text-xs text-accent">→</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-16 space-y-12 border-t border-border pt-12">
+              <div>
+                <h2 className="font-serif text-2xl italic text-foreground md:text-3xl">
+                  Add to the platform
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-foreground/70">
+                  We build it once and ship it to every customer. Best for new
+                  states, new providers, or new resource types.
+                </p>
+              </div>
 
-            <p className="mt-12 text-sm text-foreground/60">
-              Project-based pricing. Fixed scope, fixed timeline. You own the
-              IP at handoff.
-            </p>
+              <div>
+                <h2 className="font-serif text-2xl italic text-foreground md:text-3xl">
+                  Build it custom
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-foreground/70">
+                  We build it just for you. Best for reverse integrations into
+                  your stack, white-labeled deployments, or workflows specific
+                  to your operation. IP yours at handoff.
+                </p>
+              </div>
+            </div>
 
-            <div className="mt-10 border-t border-border pt-8">
+            <div className="mt-16 border-t border-border pt-8">
               <a
-                href="mailto:hello@seedlink.dev?subject=Custom%20Integration%20Inquiry"
+                href="mailto:hello@seedlink.dev?subject=Integration%20Inquiry"
                 className="font-mono text-sm text-accent transition-colors hover:text-foreground"
               >
                 hello@seedlink.dev →
