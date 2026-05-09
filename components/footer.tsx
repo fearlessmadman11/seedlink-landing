@@ -23,16 +23,16 @@ export function Footer() {
 
         <nav className="flex flex-wrap items-center gap-8">
           <Link
-            href="/custom-integrations"
-            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
-          >
-            Custom Integrations
-          </Link>
-          <Link
             href="/pricing"
             className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
           >
             Pricing
+          </Link>
+          <Link
+            href="/custom-integrations"
+            className="font-mono text-sm text-foreground/60 transition-colors hover:text-foreground"
+          >
+            Custom Integrations
           </Link>
           <Link
             href="https://docs.seedlink.dev"
