@@ -23,8 +23,8 @@ export function Hero() {
           A developer platform for cannabis track and trace
         </h1>
 
-        <p className="mt-8 max-w-xl font-mono text-base leading-relaxed text-foreground/80 md:text-lg">
-          One API for every state compliance provider.
+        <p className="mt-8 max-w-2xl font-mono text-base leading-relaxed text-foreground/80 md:text-lg">
+          Integrate with state compliance providers through one API.
         </p>
       </div>
     </section>
