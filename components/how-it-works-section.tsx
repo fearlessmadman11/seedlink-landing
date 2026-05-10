@@ -1,7 +1,6 @@
 import type { ReactNode } from "react"
 import { ConnectDemo } from "@/components/connect-demo"
 import { StandardizeDemo } from "@/components/standardize-demo"
-import { CaptureDemo } from "@/components/capture-demo"
 
 type StepLayout = "left-text" | "right-text" | "centered"
 
@@ -77,14 +76,6 @@ export function HowItWorksSection() {
             description="One data model across every state compliance provider. Build against one schema. We handle the differences."
             demo={<StandardizeDemo />}
             layout="centered"
-          />
-
-          <StepRow
-            eyebrow="Capture SDK"
-            title="Capture."
-            description="A drop-in scanner SDK for cultivators and processors. Read RFID tags, validate against your connected provider in real time, and write back to compliance without leaving your app."
-            demo={<CaptureDemo />}
-            layout="right-text"
           />
         </div>
       </div>
