@@ -24,7 +24,7 @@ export function Hero() {
         </h1>
 
         <p className="mt-8 max-w-xl font-mono text-base leading-relaxed text-foreground/80 md:text-lg">
-          Integrate with multiple state compliance providers.
+          Integrate with multiple state compliance providers through a single API.
         </p>
       </div>
     </section>
